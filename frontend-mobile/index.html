@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SHILP AI — Artisan Mobile App</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body class="bg-amber-50 min-h-screen font-sans">
+    <div class="max-w-md mx-auto bg-white min-h-screen shadow-2xl flex flex-col justify-between">
+        <div class="bg-orange-700 text-white p-5 rounded-b-3xl shadow-md">
+            <div class="flex justify-between items-center">
+                <div>
+                    <h1 class="text-2xl font-black tracking-tight">SHILP AI (शिल्प)</h1>
+                    <p class="text-xs text-orange-200">Ministry of Social Justice & Empowerment</p>
+                </div>
+                <span class="bg-orange-800 text-xs px-2.5 py-1 rounded-full border border-orange-600">हिंदी / EN</span>
+            </div>
+        </div>
+
+        <div class="p-6 flex-1 space-y-6">
+            <div class="text-center py-4">
+                <p class="text-sm font-semibold text-gray-500 mb-3">Apne craft ke baare me boliye (Tap to Speak):</p>
+                <button id="micBtn" onclick="simulateScan()" class="w-24 h-24 bg-gradient-to-tr from-orange-600 to-amber-500 rounded-full text-white shadow-xl hover:scale-105 transition-all flex items-center justify-center mx-auto focus:ring-8 focus:ring-orange-200">
+                    <i class="fas fa-microphone text-3xl"></i>
+                </button>
+                <p id="micStatus" class="text-xs text-gray-400 mt-3 font-medium">Ready to record speech & photo</p>
+            </div>
+
+            <div id="resultCard" class="hidden border border-orange-100 bg-orange-50/50 rounded-2xl p-4 space-y-4 shadow-sm">
+                <div class="flex items-center space-x-3">
+                    <img id="resImg" src="https://images.unsplash.com/photo-1610030469983-98e550d6193c?w=400" class="w-20 h-20 rounded-xl object-cover border border-orange-200 shadow-sm" />
+                    <div>
+                        <span class="bg-green-100 text-green-800 text-xs font-bold px-2 py-0.5 rounded">4K Studio Enhanced</span>
+                        <h3 id="resTitle" class="font-bold text-gray-800 text-sm mt-1 leading-snug">Handcrafted Pure Silk Dupatta</h3>
+                        <p id="resPrice" class="text-orange-700 font-black text-base mt-0.5">₹ 590 <span class="text-xs text-gray-500 font-normal">(Ethical Fair Price)</span></p>
+                    </div>
+                </div>
+
+                <div class="bg-white p-3 rounded-xl border border-gray-100 text-xs text-gray-600 italic">
+                    <i class="fas fa-quote-left text-orange-400 mr-1"></i>
+                    <span id="resStory">Handcrafted by Varanasi master weavers, preserving centuries of heritage.</span>
+                </div>
+
+                <div class="grid grid-cols-2 gap-2 pt-2">
+                    <button onclick="shareWhatsApp()" class="bg-green-600 text-white font-bold py-2 px-3 rounded-xl text-xs flex items-center justify-center space-x-1 shadow hover:bg-green-700">
+                        <i class="fab fa-whatsapp text-sm"></i>
+                        <span>WhatsApp Card</span>
+                    </button>
+                    <a id="standeeLink" href="http://localhost:8000/api/v1/products/shilp_101/mela-standee-pdf" target="_blank" class="bg-orange-700 text-white font-bold py-2 px-3 rounded-xl text-xs flex items-center justify-center space-x-1 shadow hover:bg-orange-800">
+                        <i class="fas fa-print text-sm"></i>
+                        <span>Mela Standee</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="p-4 border-t text-center text-xs text-gray-400 bg-white">
+            Backend: <span class="text-green-600 font-bold">http://localhost:8000</span>
+        </div>
+    </div>
+
+    <script>
+        async function simulateScan() {
+            document.getElementById('micStatus').innerText = "Processing Voice & Image AI...";
+            try {
+                const res = await fetch("http://localhost:8000/api/v1/media/process-raw", {
+                    method: "POST",
+                    headers: {"Content-Type": "application/x-www-form-urlencoded"},
+                    body: "craft_category=textiles&material_cost=250&labor_hours=16&transcript_hint=Pure Banarasi Silk Dupatta"
+                });
+                const data = await res.json();
+                document.getElementById('resTitle').innerText = data.catalog.title_en;
+                document.getElementById('resPrice').innerText = "₹ " + data.pricing.recommended_retail_price;
+                document.getElementById('resStory').innerText = data.catalog.story_en;
+                document.getElementById('resultCard').classList.remove('hidden');
+                document.getElementById('micStatus').innerText = "Catalog Generated Successfully!";
+            } catch(e) {
+                document.getElementById('micStatus').innerText = "Simulated Mode (Make sure backend is running)";
+                document.getElementById('resultCard').classList.remove('hidden');
+            }
+        }
+        function shareWhatsApp() {
+            alert("Generated shareable WhatsApp catalog card with instant UPI QR payment link!");
+        }
+    </script>
+</body>
+</html>

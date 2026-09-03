@@ -1,0 +1,14 @@
+fastapi>=0.110.0
+uvicorn[standard]>=0.28.0
+pydantic>=2.6.0
+rembg>=2.0.57
+pillow>=10.2.0
+opencv-python-headless>=4.9.0
+groq>=0.5.0
+openai>=1.14.0
+python-multipart>=0.0.9
+reportlab>=4.1.0
+qrcode[pil]>=7.4.2
+sqlalchemy>=2.0.28
+requests>=2.31.0
+gTTS>=2.5.1

@@ -1,0 +1,35 @@
+[
+  {
+    "craft_name": "Banarasi Silk Dupatta",
+    "category": "textiles",
+    "region": "Varanasi, Uttar Pradesh",
+    "artisan": "Ramprasad Vishwakarma",
+    "scheme_id": "PM-VISH-UP-0042",
+    "material_cost": 350.0,
+    "labor_hours": 16.0,
+    "hindi_transcript": "Yeh pure Banarasi katan silk dupatta hai, hath se buna hua gold zari ke sath, do din lage banane me, 350 rupaye ka kacha mal laga.",
+    "english_translation": "This is a pure Banarasi Katan silk dupatta, handwoven with gold zari, took 2 days to make, raw material cost Rs 350."
+  },
+  {
+    "craft_name": "Bastar Dokra Brass Diya",
+    "category": "metalwork",
+    "region": "Bastar, Chhattisgarh",
+    "artisan": "Mangli Bai Mandavi",
+    "scheme_id": "PM-DAKSH-CG-108",
+    "material_cost": 180.0,
+    "labor_hours": 6.0,
+    "hindi_transcript": "Yeh purani dhokra mitti aur pital ki technique se bana traditional tribal diya hai, 6 ghante lage, 180 ka pital laga.",
+    "english_translation": "This is a traditional tribal brass lamp made using the lost-wax technique, took 6 hours, Rs 180 raw alloy used."
+  },
+  {
+    "craft_name": "Jaipur Blue Pottery Ceramic Vase",
+    "category": "pottery",
+    "region": "Jaipur, Rajasthan",
+    "artisan": "Govind Narain Kripalu",
+    "scheme_id": "NBCFDC-RJ-5521",
+    "material_cost": 140.0,
+    "labor_hours": 5.0,
+    "hindi_transcript": "Yeh handmade Jaipur blue pottery ka flower vase hai, natural cobalt blue colour aur multani mitti se bana, 5 ghante lage.",
+    "english_translation": "This is a handmade Jaipur blue pottery flower vase, made with natural cobalt blue pigment and Multani clay, took 5 hours."
+  }
+]
