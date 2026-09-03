@@ -1,25 +1,12 @@
-import io
-from PIL import Image, ImageEnhance
+# ASSIGNED TO: Kartik Dhiman (AI / GenAI)
+# MODULE: Image Studio Pipeline
+# PURPOSE: Strip messy backgrounds and center product on 1080x1080 studio canvas.
 
 def enhance_craft_image(image_bytes: bytes) -> bytes:
-    raw = Image.open(io.BytesIO(image_bytes)).convert("RGBA")
-    try:
-        from rembg import remove
-        nobg = remove(raw)
-    except Exception as e:
-        nobg = raw
-
-    try:
-        nobg = ImageEnhance.Color(nobg).enhance(1.15)
-    except Exception:
-        pass
-
-    canvas = Image.new("RGBA", (1080, 1080), (255, 255, 255, 255))
-    nobg.thumbnail((850, 850), Image.Resampling.LANCZOS)
-    x = (1080 - nobg.width) // 2
-    y = (1080 - nobg.height) // 2
-    canvas.paste(nobg, (x, y), nobg)
-    
-    output = io.BytesIO()
-    canvas.convert("RGB").save(output, format="JPEG", quality=92)
-    return output.getvalue()
+    # TODO: Kartik Dhiman
+    # 1. Ingest raw image bytes from mobile camera.
+    # 2. Use rembg (u2net or BiRefNet) to remove the background.
+    # 3. Use OpenCV / PIL to adjust contrast and enhance natural craft colors.
+    # 4. Create a 1080x1080 pure white canvas and center the product.
+    # 5. Return enhanced JPEG bytes.
+    return image_bytes
