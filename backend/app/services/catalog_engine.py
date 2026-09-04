@@ -78,9 +78,15 @@ def generate_catalog_from_voice(transcript: str, craft_category: str = "textiles
     return data
 
 def generate_hindi_tts_audio(title_hi: str, price: float, prod_id: str, static_dir: str) -> str:
-    text = f"Aapka {title_hi} safalta se catalog ho gaya hai. Tajveez daam {price:.0f} rupaye hai."
+    try:
+        price_num = float(price)
+    except Exception:
+        price_num = 2900.0
+    text = f"Aapka {title_hi} safalta se catalog ho gaya hai. Tajveez daam {price_num:.0f} rupaye hai."
     filename = f"audio_{prod_id}.mp3"
-    filepath = os.path.join(static_dir, "audio", filename)
+    out_dir = os.path.join(static_dir, "audio")
+    os.makedirs(out_dir, exist_ok=True)
+    filepath = os.path.join(out_dir, filename)
     try:
         tts = gTTS(text=text, lang="hi", slow=False)
         tts.save(filepath)

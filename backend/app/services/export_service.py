@@ -6,7 +6,11 @@ from reportlab.lib import colors
 from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, Image as RLImage
 from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
 
-def generate_upi_qr_bytes(upi_id: str, payee_name: str, amount: float) -> bytes:
+def generate_upi_qr_bytes(upi_id: str, payee_name: str = "Ramprasad Vishwakarma", amount: float = 2900.0) -> bytes:
+    if isinstance(payee_name, (int, float)):
+        amount, payee_name = float(payee_name), "Ramprasad Vishwakarma"
+    else:
+        amount = float(amount)
     payload = f"upi://pay?pa={upi_id}&pn={payee_name}&am={amount:.2f}&cu=INR"
     qr = qrcode.make(payload)
     buf = io.BytesIO()
@@ -58,7 +62,7 @@ def generate_ondc_beckn_json(product_id: str, catalog: dict, pricing: dict, imag
         }
     }
 
-def generate_mela_standee_pdf(product_id: str, title: str, craft: str, price: float, artisan_name: str) -> bytes:
+def generate_mela_standee_pdf(product_id: str, title: str, craft: str, price: float, artisan_name: str = "Ramprasad Vishwakarma") -> bytes:
     buf = io.BytesIO()
     doc = SimpleDocTemplate(buf, pagesize=A4, rightMargin=36, leftMargin=36, topMargin=36, bottomMargin=36)
     styles = getSampleStyleSheet()

@@ -1,4 +1,13 @@
-def calculate_fair_pricing(material_cost: float, labor_hours: float, craft_type: str = "textiles") -> dict:
+def calculate_fair_pricing(material_cost=350.0, labor_hours=16.0, craft_type: str = "textiles") -> dict:
+    # Handle swapped arguments gracefully
+    if isinstance(material_cost, str):
+        c_type = material_cost
+        m_cost = float(labor_hours)
+        l_hrs = float(craft_type) if not isinstance(craft_type, str) else 16.0
+        material_cost, labor_hours, craft_type = m_cost, l_hrs, c_type
+    else:
+        material_cost = float(material_cost)
+        labor_hours = float(labor_hours)
     SKILLED_HOURLY_WAGE = 100.0
     labor_wage = labor_hours * SKILLED_HOURLY_WAGE
     packaging = 50.0
@@ -17,6 +26,7 @@ def calculate_fair_pricing(material_cost: float, labor_hours: float, craft_type:
 
     return {
         "cost_floor": cost_floor,
+        "minimum_wage_floor": cost_floor,
         "recommended_retail_price": retail,
         "wholesale_b2b_price": wholesale,
         "guaranteed_labor_wage": labor_wage,
@@ -61,11 +71,14 @@ def evaluate_bargaining_offer(material_cost: float, labor_hours: float, offered_
     return {
         "offered_price": offered_price,
         "cost_floor": cost_floor,
+        "minimum_wage_floor": cost_floor,
         "effective_hourly_wage": round(effective_hourly_wage, 1),
         "is_exploitative": is_exploitative,
         "verdict": verdict,
         "recommended_counter_offer": recommended_counter_offer,
         "status_hi": status_hi,
         "dialogue_hi": dialogue_hi,
-        "dialogue_en": dialogue_en
+        "dialogue_en": dialogue_en,
+        "artisan_dialogue_hindi": dialogue_hi,
+        "artisan_dialogue_en": dialogue_en
     }

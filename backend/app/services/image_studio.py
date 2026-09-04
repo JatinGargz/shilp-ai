@@ -37,6 +37,8 @@ def enhance_craft_image(image_bytes: bytes, prod_id: str, static_dir: str) -> st
         pass
 
     filename = f"studio_{prod_id}.jpg"
-    filepath = os.path.join(static_dir, "studio", filename)
+    out_dir = os.path.join(static_dir, "studio")
+    os.makedirs(out_dir, exist_ok=True)
+    filepath = os.path.join(out_dir, filename)
     canvas.convert("RGB").save(filepath, format="JPEG", quality=92)
     return f"/static/studio/{filename}"
