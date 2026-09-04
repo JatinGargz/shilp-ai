@@ -11,9 +11,10 @@ from app.core.seed import seed_database
 from app.models.models import Artisan, Product, ProductMedia, ProductPricing
 from app.schemas.contracts import ProcessRawResponse, CatalogData, PricingData, BuyerMatch
 from app.services.image_studio import enhance_craft_image
-from app.services.catalog_engine import generate_catalog_from_voice, generate_hindi_tts_audio
-from app.services.pricing_engine import calculate_fair_pricing, match_b2b_buyers
+from app.services.catalog_engine import generate_catalog_from_voice, generate_hindi_tts_audio, ask_shilpi_assistant
+from app.services.pricing_engine import calculate_fair_pricing, match_b2b_buyers, evaluate_bargaining_offer
 from app.services.export_service import generate_upi_qr_bytes, generate_ondc_beckn_json, generate_mela_standee_pdf
+
 
 Base.metadata.create_all(bind=engine)
 seed_database()
@@ -180,6 +181,58 @@ def get_ondc(product_id: str, db: Session = Depends(get_db)):
     img = prod.media.enhanced_studio_url if prod and prod.media else "https://images.unsplash.com/photo-1610030469983-98e550d6193c?w=800"
     return generate_ondc_beckn_json(product_id, {"title_en": title}, {"recommended_retail_price": price}, img)
 
+@app.get("/export/ondc")
+def get_global_ondc_export(db: Session = Depends(get_db)):
+    prod = db.query(Product).first()
+    pid = prod.id if prod else "prod_001"
+    title = prod.title_en if prod else "Handcrafted Traditional Banarasi Scarf"
+    price = prod.pricing.recommended_retail_price if prod and prod.pricing else 1850.0
+    img = prod.media.enhanced_studio_url if prod and prod.media else "https://images.unsplash.com/photo-1610030469983-98e550d6193c?w=800"
+    return generate_ondc_beckn_json(pid, {"title_en": title}, {"recommended_retail_price": price}, img)
+
+@app.post("/api/v1/pricing/bargain-shield")
+def post_bargaining_shield(payload: dict):
+    material_cost = float(payload.get("material_cost", 350.0))
+    labor_hours = float(payload.get("labor_hours", 16.0))
+    offered_price = float(payload.get("offered_price", 1100.0))
+    craft_type = payload.get("craft_type", "textiles")
+    return evaluate_bargaining_offer(material_cost, labor_hours, offered_price, craft_type)
+
+@app.post("/api/v1/assistant/shilpi")
+def post_shilpi_assistant(payload: dict):
+    question = payload.get("question", "")
+    return ask_shilpi_assistant(question, STATIC_DIR)
+
+@app.post("/api/v1/orders/simulate-ondc-order")
+def simulate_ondc_order(payload: dict, db: Session = Depends(get_db)):
+    prod_id = payload.get("product_id", "prod_001")
+    buyer_name = payload.get("buyer_name", "Suman Rao")
+    city = payload.get("city", "Mumbai, Maharashtra")
+    qty = int(payload.get("quantity", 1))
+    buyer_app = payload.get("buyer_app", "Paytm ONDC Store")
+    
+    prod = db.query(Product).filter(Product.id == prod_id).first()
+    price = prod.pricing.recommended_retail_price if prod and prod.pricing else 2900.0
+    total_amount = price * qty
+    order_id = f"OD_ONDC_{uuid.uuid4().hex[:8].upper()}"
+    
+    return {
+        "status": "ORDER_CONFIRMED",
+        "order_id": order_id,
+        "product_id": prod_id,
+        "product_title": prod.title_en if prod else "Handcrafted Heritage Craft",
+        "buyer_name": buyer_name,
+        "delivery_city": city,
+        "quantity": qty,
+        "total_amount": total_amount,
+        "buyer_network_app": buyer_app,
+        "payment_status": "SETTLED_VIA_UPI",
+        "artisan_credited": prod.artisan.name if prod and prod.artisan else "Ramprasad Vishwakarma",
+        "artisan_upi_id": f"{prod_id}@upi",
+        "timestamp": "Just now",
+        "tracking_id": f"DELHIVERY_{uuid.uuid4().hex[:6].upper()}"
+    }
+
 @app.get("/api/v1/analytics/ministry")
 def get_ministry_analytics(db: Session = Depends(get_db)):
     prod_count = db.query(Product).count()
@@ -196,3 +249,5 @@ def get_ministry_analytics(db: Session = Depends(get_db)):
             {"state": "Gujarat", "cluster": "Kutch Rogan & Bandhani", "count": 370}
         ]
     }
+
+

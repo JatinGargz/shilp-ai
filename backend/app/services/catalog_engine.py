@@ -1,6 +1,8 @@
 import json
 import os
+import uuid
 from gtts import gTTS
+
 
 CRAFT_KNOWLEDGE = {
     "textiles": {
@@ -85,3 +87,37 @@ def generate_hindi_tts_audio(title_hi: str, price: float, prod_id: str, static_d
         return f"/static/audio/{filename}"
     except Exception as e:
         return "/static/audio/fallback_sample.mp3"
+
+def ask_shilpi_assistant(question: str, static_dir: str) -> dict:
+    q = question.lower()
+    
+    if any(k in q for k in ["toolkit", "15000", "टूलकिट", "भत्ता", "पैसा"]):
+        ans_hi = "पीएम विश्वकर्मा योजना के अंतर्गत आपको ₹15,000 का आधुनिक टूलकिट प्रोत्साहन मिलता है। इसके अलावा 5% ब्याज पर ₹1 लाख तक का बिना गारंटी का ऋण भी उपलब्ध है।"
+        ans_en = "Under PM Vishwakarma, you receive a ₹15,000 digital e-voucher for modern toolkits, plus up to ₹1,00,000 collateral-free credit at 5% interest."
+    elif any(k in q for k in ["mela", "surajkund", "stall", "मेला", "हाट", "प्रदर्शनी"]):
+        ans_hi = "सूरजकुंड और दिल्ली हाट जैसे सरकारी मेलों में MoSJE और PM-DAKSH के तहत पंजीकृत कारीगरों को निःशुल्क स्टॉल आवंटित किए जाते हैं। अपने स्टॉल पर हमारा A4 स्टैंडी PDF जरूर लगाएं ताकि ग्राहक बाद में भी सालभर ऑर्डर कर सकें।"
+        ans_en = "Under MoSJE and PM-DAKSH, certified artisans receive free or subsidized exhibition stalls at fairs like Surajkund Mela. Always display your A4 QR standee for year-round repeat orders."
+    elif any(k in q for k in ["ondc", "paytm", "order", "ऑर्डर", "बिक्री", "ऑनलाइन"]):
+        ans_hi = "आपका कैटलॉग ONDC नेटवर्क पर सक्रिय है। Paytm या PhonePe पर जब भी ग्राहक ऑर्डर करेगा, पैसा सीधे आपके बैंक खाते में बिना किसी बिचौलिये के पहुंचेगा।"
+        ans_en = "Your products are broadcast on the ONDC open network. When buyers purchase via Paytm or PhonePe, payment is transferred directly to your bank account with zero intermediary commission."
+    else:
+        ans_hi = "शिल्प AI आपकी कला का संरक्षक है। अपनी मेहनत का उचित मूल्य लें, कम से कम ₹100 प्रति घंटा दिहाड़ी सुरक्षित रखें और अपनी हस्तकला का डिजिटल प्रमाण-पत्र हमेशा ग्राहकों को दिखाएं।"
+        ans_en = "SHILP AI safeguards your traditional craftsmanship. Always ensure at least ₹100/hr wage floor and share your MoSJE authenticity certificate with buyers."
+
+    filename = f"shilpi_{uuid.uuid4().hex[:8]}.mp3"
+    filepath = os.path.join(static_dir, "audio", filename)
+    audio_url = ""
+    try:
+        tts = gTTS(text=ans_hi, lang="hi", slow=False)
+        tts.save(filepath)
+        audio_url = f"/static/audio/{filename}"
+    except Exception:
+        audio_url = ""
+
+    return {
+        "question": question,
+        "answer_hi": ans_hi,
+        "answer_en": ans_en,
+        "audio_url": audio_url
+    }
+
