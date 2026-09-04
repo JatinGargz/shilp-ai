@@ -3,7 +3,7 @@ import uuid
 from fastapi import FastAPI, UploadFile, File, Form, Depends
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
-from fastapi.responses import Response
+from fastapi.responses import Response, FileResponse
 from sqlalchemy.orm import Session
 
 from app.core.database import engine, Base, get_db
@@ -29,10 +29,18 @@ app.add_middleware(
 )
 
 STATIC_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "static"))
+FRONTEND_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", "frontend"))
 os.makedirs(os.path.join(STATIC_DIR, "uploads"), exist_ok=True)
 os.makedirs(os.path.join(STATIC_DIR, "studio"), exist_ok=True)
 os.makedirs(os.path.join(STATIC_DIR, "audio"), exist_ok=True)
 app.mount("/static", StaticFiles(directory=STATIC_DIR), name="static")
+
+@app.get("/")
+def serve_frontend_root():
+    index_file = os.path.join(FRONTEND_DIR, "index.html")
+    if os.path.exists(index_file):
+        return FileResponse(index_file)
+    return {"message": "SHILP AI Core Orchestrator running"}
 
 @app.get("/health")
 def health():

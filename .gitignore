@@ -15,3 +15,11 @@ dist/
 # OS
 .DS_Store
 Thumbs.db
+
+# Databases & Runtime Media
+*.db
+backend/static/audio/*.mp3
+backend/static/studio/*.jpg
+backend/static/uploads/*
+!backend/static/uploads/.gitkeep
+
