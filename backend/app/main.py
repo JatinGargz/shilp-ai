@@ -13,7 +13,7 @@ from app.schemas.contracts import ProcessRawResponse, CatalogData, PricingData, 
 from app.services.image_studio import enhance_craft_image
 from app.services.catalog_engine import generate_catalog_from_voice, generate_hindi_tts_audio, ask_shilpi_assistant
 from app.services.pricing_engine import calculate_fair_pricing, match_b2b_buyers, evaluate_bargaining_offer
-from app.services.export_service import generate_upi_qr_bytes, generate_ondc_beckn_json, generate_mela_standee_pdf
+from app.services.export_service import generate_upi_qr_bytes, generate_ondc_beckn_json, generate_mela_standee_pdf, publish_to_all_channels
 
 
 Base.metadata.create_all(bind=engine)
@@ -249,5 +249,41 @@ def get_ministry_analytics(db: Session = Depends(get_db)):
             {"state": "Gujarat", "cluster": "Kutch Rogan & Bandhani", "count": 370}
         ]
     }
+
+@app.post("/api/v1/channels/publish-multi")
+def post_multi_channel_publish(payload: dict, db: Session = Depends(get_db)):
+    product_id = payload.get("product_id", "prod_001")
+    prod = db.query(Product).filter(Product.id == product_id).first()
+    
+    catalog = {
+        "title_en": prod.title_en if prod else "Handcrafted Traditional Banarasi Scarf",
+        "craft_type": prod.craft_type if prod else "Banarasi Weaving",
+        "material": prod.material if prod else "Pure Silk",
+        "story_en": prod.story_en if prod else "500-year handloom heritage artifact."
+    }
+    pricing = {
+        "recommended_retail_price": prod.pricing.recommended_retail_price if prod and prod.pricing else 2900.0,
+        "wholesale_b2b_price": prod.pricing.wholesale_b2b_price if prod and prod.pricing else 2320.0
+    }
+    image_url = prod.media.enhanced_studio_url if prod and prod.media else "https://images.unsplash.com/photo-1610030469983-98e550d6193c?w=800"
+    
+    return publish_to_all_channels(product_id, catalog, pricing, image_url)
+
+@app.get("/api/v1/products/{product_id}/channels")
+def get_product_channels(product_id: str, db: Session = Depends(get_db)):
+    prod = db.query(Product).filter(Product.id == product_id).first()
+    catalog = {
+        "title_en": prod.title_en if prod else "Handcrafted Traditional Artifact",
+        "craft_type": prod.craft_type if prod else "Traditional Craft",
+        "material": prod.material if prod else "Ethical Raw Material",
+        "story_en": prod.story_en if prod else "Preserving Indian heritage."
+    }
+    pricing = {
+        "recommended_retail_price": prod.pricing.recommended_retail_price if prod and prod.pricing else 2900.0,
+        "wholesale_b2b_price": prod.pricing.wholesale_b2b_price if prod and prod.pricing else 2320.0
+    }
+    image_url = prod.media.enhanced_studio_url if prod and prod.media else "https://images.unsplash.com/photo-1610030469983-98e550d6193c?w=800"
+    return publish_to_all_channels(product_id, catalog, pricing, image_url)
+
 
 

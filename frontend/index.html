@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SHILP AI (शिल्प) — Full-Loop E-Commerce & Virtual Business Manager</title>
+    <title>SHILP AI (शिल्प) — Universal E-Commerce & Virtual Business Manager</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Rozha+One&family=Noto+Sans+Devanagari:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -21,10 +21,14 @@
                             800: '#872710',
                             900: '#6f2311',
                         },
-                        ondc: {
-                            blue: '#0047AB',
-                            light: '#E8F0FE',
-                            accent: '#1E88E5'
+                        amazon: {
+                            orange: '#FF9900',
+                            dark: '#131921',
+                            blue: '#146EB4'
+                        },
+                        flipkart: {
+                            blue: '#2874F0',
+                            yellow: '#FFE11B'
                         }
                     }
                 }
@@ -34,7 +38,7 @@
     <style>
         body {
             font-family: 'Plus Jakarta Sans', 'Noto Sans Devanagari', sans-serif;
-            background-color: #ede7dd;
+            background-color: #eae4da;
         }
         .font-heritage { font-family: 'Rozha One', serif; }
         .phone-frame {
@@ -93,26 +97,29 @@
                         SHILP AI <span class="text-stone-300 font-light ml-0.5">| शिल्प</span>
                     </h1>
                     <span class="text-[10px] font-bold bg-terracotta-900/90 text-amber-300 border border-amber-500/40 px-2 py-0.5 rounded-full">
-                        Full E-Commerce Loop &bull; SIH 26090
+                        Universal 5-Channel E-Commerce &bull; SIH 26090
                     </span>
                 </div>
-                <p class="text-[11px] text-stone-400">From Artisan Camera to Live ONDC Buyer Storefront & Payout</p>
+                <p class="text-[11px] text-stone-400">1-Click Multi-Channel Publisher: ONDC &bull; Amazon Karigar &bull; Flipkart &bull; GeM &bull; Etsy</p>
             </div>
         </div>
 
         <!-- Master View Switcher -->
         <div class="flex bg-stone-900/90 p-1 rounded-2xl border border-stone-800 space-x-1 shadow-inner text-xs">
-            <button onclick="switchMasterView('mobile')" id="btnViewMobile" class="px-3.5 py-1.5 font-bold rounded-xl text-stone-400 hover:text-white transition">
-                <i class="fas fa-mobile-alt mr-1.5"></i> Artisan Mobile
+            <button onclick="switchMasterView('mobile')" id="btnViewMobile" class="px-3 py-1.5 font-bold rounded-xl text-stone-400 hover:text-white transition">
+                <i class="fas fa-mobile-alt mr-1"></i> Artisan Mobile
             </button>
-            <button onclick="switchMasterView('storefront')" id="btnViewStorefront" class="px-3.5 py-1.5 font-bold rounded-xl text-stone-400 hover:text-white transition">
-                <i class="fas fa-shopping-bag mr-1.5 text-blue-400"></i> ONDC Buyer Store (Paytm)
+            <button onclick="switchMasterView('storefront')" id="btnViewStorefront" class="px-3 py-1.5 font-bold rounded-xl text-stone-400 hover:text-white transition">
+                <i class="fas fa-shopping-bag mr-1 text-blue-400"></i> ONDC Store (Paytm)
             </button>
-            <button onclick="switchMasterView('admin')" id="btnViewAdmin" class="px-3.5 py-1.5 font-bold rounded-xl text-stone-400 hover:text-white transition">
-                <i class="fas fa-landmark mr-1.5 text-amber-400"></i> MoSJE Ministry Portal
+            <button onclick="switchMasterView('amazon')" id="btnViewAmazon" class="px-3 py-1.5 font-bold rounded-xl text-stone-400 hover:text-white transition">
+                <i class="fab fa-amazon mr-1 text-amber-400"></i> Amazon Karigar Store
             </button>
-            <button onclick="switchMasterView('split')" id="btnViewSplit" class="px-3.5 py-1.5 font-bold rounded-xl bg-gradient-to-r from-terracotta-600 to-amber-600 text-white shadow-md transition">
-                <i class="fas fa-columns mr-1.5"></i> Dual-Screen Live Booth
+            <button onclick="switchMasterView('admin')" id="btnViewAdmin" class="px-3 py-1.5 font-bold rounded-xl text-stone-400 hover:text-white transition">
+                <i class="fas fa-landmark mr-1 text-emerald-400"></i> MoSJE Ministry Portal
+            </button>
+            <button onclick="switchMasterView('split')" id="btnViewSplit" class="px-3 py-1.5 font-bold rounded-xl bg-gradient-to-r from-terracotta-600 to-amber-600 text-white shadow-md transition">
+                <i class="fas fa-columns mr-1"></i> Dual-Screen Live Booth
             </button>
         </div>
     </header>
@@ -128,7 +135,7 @@
                 <div class="flex items-center space-x-2 mb-2">
                     <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
                     <span class="text-[11px] font-extrabold uppercase tracking-wider text-stone-700">
-                        Artisan Mobile Interface (Live Camera, Mic & ONDC Link)
+                        Artisan Mobile App (5-Channel Publisher Active)
                     </span>
                 </div>
 
@@ -162,20 +169,19 @@
                                 <p id="artisanSubtext" class="text-[9px] text-amber-200/80 mt-0.5">PM Vishwakarma: PM-UP-4210 &bull; बुनकर</p>
                             </div>
                         </div>
-                        <!-- Language Switcher Button -->
                         <button onclick="toggleAppLanguage()" class="bg-stone-800/90 hover:bg-stone-700 text-amber-300 border border-amber-500/40 text-[10px] font-bold px-3 py-1.5 rounded-full shadow-sm flex items-center space-x-1.5 active:scale-95 transition">
                             <i class="fas fa-language text-amber-400 text-xs"></i>
                             <span id="langBtnText">हिंदी / English</span>
                         </button>
                     </div>
 
-                    <!-- Instant Order Alert Toast (Shown when customer orders) -->
+                    <!-- Instant Order Alert Toast -->
                     <div id="artisanOrderToast" class="hidden absolute top-20 left-4 right-4 bg-gradient-to-r from-emerald-600 to-teal-700 text-white p-3 rounded-2xl shadow-2xl z-30 flex items-center space-x-3 animate-bounce">
                         <div class="w-8 h-8 rounded-full bg-white text-emerald-700 flex items-center justify-center text-sm font-black flex-shrink-0">
                             ₹
                         </div>
                         <div class="flex-1 text-left">
-                            <p class="text-[10px] font-black uppercase tracking-wider text-emerald-100">नया ONDC ऑर्डर प्राप्त हुआ!</p>
+                            <p class="text-[10px] font-black uppercase tracking-wider text-emerald-100">नया ई-कॉमर्स ऑर्डर प्राप्त हुआ!</p>
                             <p id="toastOrderText" class="text-xs font-bold leading-tight mt-0.5">₹ 2,900 &bull; भुगतान सफल via UPI</p>
                         </div>
                         <button onclick="document.getElementById('artisanOrderToast').classList.add('hidden')" class="text-white text-xs opacity-70 hover:opacity-100">
@@ -196,11 +202,11 @@
                                 </div>
                                 <div>
                                     <p id="labelGovScheme" class="text-[10px] font-extrabold text-stone-800">MoSJE Certified Artisan Partner</p>
-                                    <p class="text-[8px] text-stone-500">PM Vishwakarma &bull; ONDC Direct UPI Settlement</p>
+                                    <p class="text-[8px] text-stone-500">Universal Direct Payout to Artisan Bank Account</p>
                                 </div>
                             </div>
                             <span class="bg-emerald-100 text-emerald-800 text-[8px] font-black px-2 py-0.5 rounded-full border border-emerald-300">
-                                100% Direct
+                                0% Commission
                             </span>
                         </div>
 
@@ -231,7 +237,7 @@
                                 </div>
                             </div>
 
-                            <!-- Camera Action Controls -->
+                            <!-- Controls -->
                             <div class="grid grid-cols-2 gap-2">
                                 <button onclick="startLiveCamera()" id="btnStartCam" class="bg-stone-800 hover:bg-stone-700 text-white font-bold py-2.5 px-3 rounded-xl text-[11px] flex items-center justify-center space-x-1.5 shadow active:scale-95 transition">
                                     <i class="fas fa-video text-amber-400"></i>
@@ -244,11 +250,8 @@
                                 <input type="file" id="craftFileInput" accept="image/*" class="hidden" onchange="handleFileUpload(event)" />
                             </div>
 
-                            <!-- Shutter Controls (Visible while streaming) -->
                             <div id="shutterRow" class="hidden bg-stone-100 rounded-2xl p-2.5 flex items-center justify-between border border-stone-200">
-                                <button onclick="stopLiveCamera()" class="text-xs text-stone-500 hover:text-stone-800 px-3 py-1 font-bold">
-                                    Cancel
-                                </button>
+                                <button onclick="stopLiveCamera()" class="text-xs text-stone-500 hover:text-stone-800 px-3 py-1 font-bold">Cancel</button>
                                 <button onclick="captureCameraPhoto()" class="w-12 h-12 bg-red-600 border-4 border-white rounded-full shadow-lg hover:scale-105 active:scale-95 transition flex items-center justify-center text-white text-xs">
                                     <i class="fas fa-circle text-xs"></i>
                                 </button>
@@ -257,9 +260,7 @@
 
                             <div id="retakeRow" class="hidden flex justify-between items-center pt-1 text-[10px]">
                                 <span class="text-emerald-700 font-bold"><i class="fas fa-check-circle mr-1"></i> Ready for cataloging</span>
-                                <button onclick="resetCameraPhoto()" class="text-stone-500 hover:text-red-600 underline font-semibold">
-                                    Retake / Change Photo
-                                </button>
+                                <button onclick="resetCameraPhoto()" class="text-stone-500 hover:text-red-600 underline font-semibold">Retake Photo</button>
                             </div>
                         </div>
 
@@ -275,7 +276,6 @@
                                 </span>
                             </div>
 
-                            <!-- Transcript Box -->
                             <div id="transcriptBox" class="bg-[#fcfaf7] border border-amber-100 rounded-2xl p-3 min-h-[58px] text-[11px] text-stone-800 flex flex-col justify-center">
                                 <div id="waveAnim" class="hidden items-center space-x-1 mb-1">
                                     <span class="wave-bar"></span>
@@ -288,29 +288,20 @@
                                 <span id="transcriptText" class="italic text-stone-600">"Tap mic and speak details (e.g. Banarasi Silk Saree, 2 din lage, 350 rupaye ka kacha mal)"</span>
                             </div>
 
-                            <!-- Big Mic Button -->
                             <div class="text-center py-1">
                                 <button onclick="toggleVoiceRecording()" id="voiceRecordBtn" class="w-16 h-16 bg-gradient-to-tr from-terracotta-600 to-amber-500 rounded-full text-white shadow-lg hover:scale-105 active:scale-95 transition flex items-center justify-center mx-auto focus:ring-4 focus:ring-orange-200">
                                     <i id="voiceMicIcon" class="fas fa-microphone text-2xl"></i>
                                 </button>
-                                <p id="voiceRecordStatus" class="text-[10px] text-stone-500 font-bold mt-2">
-                                    Tap to Start Speaking (माइक दबाकर बोलें)
-                                </p>
+                                <p id="voiceRecordStatus" class="text-[10px] text-stone-500 font-bold mt-2">Tap to Start Speaking (माइक दबाकर बोलें)</p>
                             </div>
 
                             <!-- Presets -->
                             <div class="pt-2 border-t border-stone-100 space-y-1.5">
                                 <p class="text-[9px] font-bold text-stone-400 uppercase tracking-wider">Or click a craft preset to autofill:</p>
                                 <div class="grid grid-cols-3 gap-1.5">
-                                    <button onclick="applyPreset('textiles')" class="bg-stone-50 hover:bg-amber-100 border border-stone-200 py-1.5 px-2 rounded-xl text-stone-700 font-semibold text-[10px] truncate active:scale-95 transition">
-                                        रेशमी दुपट्टा
-                                    </button>
-                                    <button onclick="applyPreset('metalwork')" class="bg-stone-50 hover:bg-amber-100 border border-stone-200 py-1.5 px-2 rounded-xl text-stone-700 font-semibold text-[10px] truncate active:scale-95 transition">
-                                        ढोकरा दीया
-                                    </button>
-                                    <button onclick="applyPreset('pottery')" class="bg-stone-50 hover:bg-amber-100 border border-stone-200 py-1.5 px-2 rounded-xl text-stone-700 font-semibold text-[10px] truncate active:scale-95 transition">
-                                        ब्लू पॉटरी
-                                    </button>
+                                    <button onclick="applyPreset('textiles')" class="bg-stone-50 hover:bg-amber-100 border border-stone-200 py-1.5 px-2 rounded-xl text-stone-700 font-semibold text-[10px] truncate active:scale-95 transition">रेशमी दुपट्टा</button>
+                                    <button onclick="applyPreset('metalwork')" class="bg-stone-50 hover:bg-amber-100 border border-stone-200 py-1.5 px-2 rounded-xl text-stone-700 font-semibold text-[10px] truncate active:scale-95 transition">ढोकरा दीया</button>
+                                    <button onclick="applyPreset('pottery')" class="bg-stone-50 hover:bg-amber-100 border border-stone-200 py-1.5 px-2 rounded-xl text-stone-700 font-semibold text-[10px] truncate active:scale-95 transition">ब्लू पॉटरी</button>
                                 </div>
                             </div>
                         </div>
@@ -330,7 +321,7 @@
                             <p id="step1" class="text-amber-300 font-semibold"><i class="fas fa-circle-notch fa-spin mr-1.5"></i> Removing background & stamping MoSJE Authenticity Seal...</p>
                             <p id="step2" class="text-stone-400"><i class="far fa-circle mr-1.5"></i> Formulating bilingual catalog & heritage story...</p>
                             <p id="step3" class="text-stone-400"><i class="far fa-circle mr-1.5"></i> Calculating ₹100/hr wage floor & dynamic price...</p>
-                            <p id="step4" class="text-stone-400"><i class="far fa-circle mr-1.5"></i> Synthesizing audio voice note in Hindi (TTS)...</p>
+                            <p id="step4" class="text-stone-400"><i class="far fa-circle mr-1.5"></i> Formatting multi-channel feeds for Amazon, Flipkart, GeM, Etsy...</p>
                         </div>
 
                         <!-- 📦 GENERATED CATALOG RESULT CARD -->
@@ -343,7 +334,7 @@
                                     4K Studio Ready
                                 </span>
                                 <span class="absolute top-2 right-2 bg-emerald-600 text-white text-[8px] font-black px-2 py-0.5 rounded-full">
-                                    ONDC Ready
+                                    Multi-Market Ready
                                 </span>
                             </div>
 
@@ -383,24 +374,67 @@
                                 </div>
                             </div>
 
-                            <!-- 🌐 1-CLICK PUBLISH TO ONDC NETWORK BUTTON -->
-                            <div class="bg-blue-50 border border-blue-200 rounded-2xl p-3 space-y-2 text-center">
-                                <div class="flex items-center justify-center space-x-1.5 text-blue-900">
-                                    <i class="fas fa-network-wired text-xs"></i>
-                                    <span class="text-xs font-black uppercase tracking-wider">Publish to Open E-Commerce (ONDC)</span>
+                            <!-- ========================================================= -->
+                            <!-- 🌟 UNIVERSAL 5-CHANNEL E-COMMERCE PUBLISHER DRAWER        -->
+                            <!-- ========================================================= -->
+                            <div class="bg-gradient-to-br from-stone-900 to-stone-950 text-white rounded-3xl p-4 space-y-3 shadow-xl border border-amber-500/30">
+                                <div class="flex justify-between items-start">
+                                    <div>
+                                        <span class="text-[9px] font-black uppercase tracking-wider text-amber-400">Universal E-Commerce Publisher</span>
+                                        <h4 class="text-xs font-black mt-0.5">मल्टी-प्लेटफ़ॉर्म बाज़ार (5 Channels)</h4>
+                                    </div>
+                                    <span class="bg-amber-500/20 text-amber-300 border border-amber-500/40 text-[9px] font-bold px-2 py-0.5 rounded-full">
+                                        1-Click Sync
+                                    </span>
                                 </div>
-                                <p class="text-[9px] text-blue-700 leading-tight">Broadcasts this craft to Paytm, Mystore, PhonePe Pincode across India.</p>
-                                
-                                <button onclick="publishToOndcNetwork()" id="btnPublishOndc" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-extrabold py-2.5 rounded-xl text-xs shadow-md transition flex items-center justify-center space-x-1.5">
-                                    <i class="fas fa-cloud-arrow-up"></i>
-                                    <span>Publish Live to ONDC Network</span>
+
+                                <!-- 5 Channel Badges -->
+                                <div class="grid grid-cols-2 gap-2 text-[10px]">
+                                    <div class="bg-stone-800/80 p-2 rounded-xl border border-stone-700 flex items-center space-x-2">
+                                        <span class="w-2 h-2 rounded-full bg-blue-400 animate-pulse"></span>
+                                        <div class="flex-1 truncate">
+                                            <p class="font-bold text-blue-300">ONDC Network</p>
+                                            <p class="text-[8px] text-stone-400">Paytm, Mystore, Pincode</p>
+                                        </div>
+                                    </div>
+                                    <div class="bg-stone-800/80 p-2 rounded-xl border border-stone-700 flex items-center space-x-2">
+                                        <span class="w-2 h-2 rounded-full bg-amber-400"></span>
+                                        <div class="flex-1 truncate">
+                                            <p class="font-bold text-amber-300">Amazon Karigar</p>
+                                            <p id="badgeAsin" class="text-[8px] text-stone-400">ASIN: Ready</p>
+                                        </div>
+                                    </div>
+                                    <div class="bg-stone-800/80 p-2 rounded-xl border border-stone-700 flex items-center space-x-2">
+                                        <span class="w-2 h-2 rounded-full bg-blue-300"></span>
+                                        <div class="flex-1 truncate">
+                                            <p class="font-bold text-blue-200">Flipkart Samarth</p>
+                                            <p id="badgeFsn" class="text-[8px] text-stone-400">FSN: Ready</p>
+                                        </div>
+                                    </div>
+                                    <div class="bg-stone-800/80 p-2 rounded-xl border border-stone-700 flex items-center space-x-2">
+                                        <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+                                        <div class="flex-1 truncate">
+                                            <p class="font-bold text-emerald-300">GeM (Govt Portal)</p>
+                                            <p class="text-[8px] text-stone-400">4% PSU Quota</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="bg-stone-800/80 p-2 rounded-xl border border-stone-700 flex items-center space-x-2 text-[10px]">
+                                    <span class="w-2 h-2 rounded-full bg-purple-400"></span>
+                                    <div class="flex-1">
+                                        <p class="font-bold text-purple-300">Etsy Global Export (US/UK/EU)</p>
+                                        <p id="badgeEtsy" class="text-[8px] text-stone-400">Price: $34.12 USD &bull; International Shipping Ready</p>
+                                    </div>
+                                </div>
+
+                                <!-- Master Publish Button -->
+                                <button onclick="publishToAllFiveChannels()" id="btnMasterPublish" class="w-full bg-gradient-to-r from-amber-500 via-orange-500 to-terracotta-600 hover:from-amber-600 hover:to-orange-600 text-white font-black py-2.5 rounded-xl text-xs shadow-lg transition flex items-center justify-center space-x-2 active:scale-95">
+                                    <i class="fas fa-satellite-dish"></i>
+                                    <span>Publish to All 5 Marketplaces (1-Click)</span>
                                 </button>
-                                
-                                <div id="ondcPublishedStatus" class="hidden pt-1 flex items-center justify-between text-[10px]">
-                                    <span class="text-emerald-700 font-bold"><i class="fas fa-check-circle mr-1"></i> Live on ONDC</span>
-                                    <button onclick="switchMasterView('storefront')" class="text-blue-700 underline font-bold">
-                                        View Live Buyer Storefront →
-                                    </button>
+
+                                <div id="multiSyncStatus" class="hidden text-center text-[10px] text-emerald-400 font-bold">
+                                    <i class="fas fa-check-double mr-1"></i> Live on ONDC, Amazon Karigar, Flipkart & Etsy!
                                 </div>
                             </div>
 
@@ -463,7 +497,7 @@
                             <div class="flex justify-between items-start">
                                 <div>
                                     <p class="text-[9px] text-amber-200/80 font-bold uppercase tracking-wider">Total Direct Revenue (कुल बिक्री)</p>
-                                    <h3 id="earnTotalAmount" class="text-2xl font-black text-amber-400 mt-0.5">₹ 54,450</h3>
+                                    <h3 id="earnTotalAmount" class="text-2xl font-black text-amber-400 mt-0.5">₹ 57,350</h3>
                                     <p class="text-[9px] text-stone-400">Directly settled into Artisan Bank Account via UPI</p>
                                 </div>
                                 <span class="bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 text-[9px] font-bold px-2 py-0.5 rounded-full">
@@ -473,7 +507,7 @@
                             <div class="grid grid-cols-2 gap-2 pt-2 border-t border-stone-700/60">
                                 <div>
                                     <p class="text-[9px] text-stone-400">Guaranteed Wages Floor</p>
-                                    <p id="earnGuaranteedWages" class="text-xs font-bold text-stone-200">₹ 28,400 (284 hrs)</p>
+                                    <p id="earnGuaranteedWages" class="text-xs font-bold text-stone-200">₹ 31,300 (313 hrs)</p>
                                     <p class="text-[8px] text-emerald-400 font-semibold">@ ₹100/hr PM Vishwakarma</p>
                                 </div>
                                 <div>
@@ -507,7 +541,7 @@
                         </div>
                     </div>
 
-                    <!-- Floating "शिल्प सखी" (Shilpi Voice Assistant) Button -->
+                    <!-- Floating "शिल्प सखी" Button -->
                     <button onclick="openShilpiModal()" class="absolute bottom-16 right-4 w-12 h-12 rounded-full bg-gradient-to-tr from-amber-500 to-terracotta-600 text-white shadow-2xl flex items-center justify-center text-lg border-2 border-white hover:scale-110 active:scale-95 transition z-20" title="शिल्प सखी से पूछें">
                         <i class="fas fa-headset"></i>
                         <span class="absolute -top-1 -right-1 w-3.5 h-3.5 rounded-full bg-emerald-500 border border-white animate-pulse"></span>
@@ -536,7 +570,6 @@
             <!-- 2. ONDC BUYER STOREFRONT (CUSTOMER PAYTM / MYSTORE VIEW)             -->
             <!-- =================================================================== -->
             <div id="storefrontSection" class="hidden flex-1 max-w-xl bg-white rounded-3xl shadow-sm border border-stone-200 overflow-hidden text-left flex flex-col">
-                <!-- Buyer App Nav Header -->
                 <div class="bg-blue-600 text-white p-4 flex justify-between items-center">
                     <div class="flex items-center space-x-2.5">
                         <div class="w-8 h-8 rounded-lg bg-white text-blue-700 flex items-center justify-center font-black text-sm">
@@ -553,9 +586,7 @@
                     </span>
                 </div>
 
-                <!-- Buyer Store Content -->
                 <div class="p-6 space-y-6 flex-1 overflow-y-auto">
-                    <!-- Craft Product Card on Marketplace -->
                     <div class="border border-stone-200 rounded-3xl overflow-hidden shadow-sm hover:shadow-md transition">
                         <div class="relative bg-stone-50 text-center p-4">
                             <img id="storefrontImg" src="https://images.unsplash.com/photo-1610030469983-98e550d6193c?w=800" class="w-full h-64 object-contain mx-auto rounded-xl" />
@@ -592,42 +623,85 @@
                                 </span>
                             </div>
 
-                            <!-- Customer Buy Button -->
                             <div class="pt-3 border-t border-stone-100 grid grid-cols-2 gap-3">
                                 <button onclick="alert('Item added to ONDC Cart!')" class="bg-stone-100 hover:bg-stone-200 text-stone-800 font-bold py-3 rounded-2xl text-xs transition">
                                     <i class="fas fa-cart-plus mr-1"></i> Add to Cart
                                 </button>
-                                <button onclick="triggerCustomerPurchase()" id="btnBuyNowOndc" class="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-black py-3 rounded-2xl text-xs shadow-lg flex items-center justify-center space-x-1.5 active:scale-95 transition">
+                                <button onclick="triggerCustomerPurchase('ONDC (Paytm)')" class="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-black py-3 rounded-2xl text-xs shadow-lg flex items-center justify-center space-x-1.5 active:scale-95 transition">
                                     <i class="fas fa-bolt"></i>
                                     <span>Buy Now via UPI (Order)</span>
                                 </button>
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
 
-                    <!-- Customer Assurance Badges -->
-                    <div class="grid grid-cols-3 gap-2 text-center text-[10px] text-stone-600">
-                        <div class="p-2.5 bg-stone-50 rounded-xl border border-stone-200">
-                            <i class="fas fa-shield-halved text-blue-600 text-sm mb-1"></i>
-                            <p class="font-bold">100% Genuine</p>
-                            <p class="text-[8px] text-stone-400">GI Tag Certified</p>
+            <!-- =================================================================== -->
+            <!-- 3. AMAZON KARIGAR / FLIPKART STOREFRONT PREVIEW                     -->
+            <!-- =================================================================== -->
+            <div id="amazonSection" class="hidden flex-1 max-w-xl bg-white rounded-3xl shadow-sm border border-stone-200 overflow-hidden text-left flex flex-col">
+                <div class="bg-stone-900 text-white p-4 flex justify-between items-center border-b border-amber-500/40">
+                    <div class="flex items-center space-x-2.5">
+                        <div class="w-8 h-8 rounded-lg bg-amber-500 text-stone-950 flex items-center justify-center font-black text-sm">
+                            <i class="fab fa-amazon"></i>
                         </div>
-                        <div class="p-2.5 bg-stone-50 rounded-xl border border-stone-200">
-                            <i class="fas fa-truck-fast text-blue-600 text-sm mb-1"></i>
-                            <p class="font-bold">ONDC Logistics</p>
-                            <p class="text-[8px] text-stone-400">Delhivery / Shadowfax</p>
+                        <div>
+                            <h4 class="text-xs font-black tracking-wider uppercase text-amber-400">Amazon Karigar Storefront</h4>
+                            <p class="text-[9px] text-stone-400">Handcrafted in India Program &bull; Subsidized Referral Rate</p>
                         </div>
-                        <div class="p-2.5 bg-stone-50 rounded-xl border border-stone-200">
-                            <i class="fas fa-handshake-angle text-blue-600 text-sm mb-1"></i>
-                            <p class="font-bold">Fair-Trade Wage</p>
-                            <p class="text-[8px] text-stone-400">₹100/hr Protected</p>
+                    </div>
+                    <span class="bg-amber-950 text-amber-300 border border-amber-500/40 text-[10px] font-bold px-2.5 py-1 rounded-full">
+                        ASIN: B00019K
+                    </span>
+                </div>
+
+                <div class="p-6 space-y-5 flex-1 overflow-y-auto">
+                    <div class="border border-stone-200 rounded-3xl p-4 space-y-3 bg-white shadow-sm">
+                        <div class="relative bg-white text-center p-2">
+                            <img id="amazonImg" src="https://images.unsplash.com/photo-1610030469983-98e550d6193c?w=800" class="w-full h-56 object-contain mx-auto" />
+                            <span class="absolute top-2 left-2 bg-amber-600 text-white text-[9px] font-black px-2 py-0.5 rounded">
+                                Amazon Karigar Choice
+                            </span>
                         </div>
+
+                        <div>
+                            <h3 id="amazonTitle" class="text-sm font-black text-stone-900 leading-snug">
+                                Handwoven Banarasi Katan Silk Scarf with Zari Border
+                            </h3>
+                            <p class="text-[10px] text-blue-600 hover:underline cursor-pointer mt-0.5">Visit the Ramprasad Vishwakarma Handloom Store</p>
+                            <div class="flex items-center space-x-2 mt-1">
+                                <span class="text-xs font-black text-amber-500">★★★★★ 4.8</span>
+                                <span class="text-[10px] text-stone-400">(42 customer reviews)</span>
+                            </div>
+                        </div>
+
+                        <div class="border-y border-stone-100 py-2.5 flex items-baseline space-x-2">
+                            <span class="text-2xl font-black text-stone-900" id="amazonPrice">₹ 2,900</span>
+                            <span class="text-xs text-stone-400">M.R.P.: <span class="line-through">₹ 4,200</span> (31% off)</span>
+                            <span class="text-[10px] font-bold text-amber-700 bg-amber-50 px-2 py-0.5 rounded">Inclusive of all taxes</span>
+                        </div>
+
+                        <!-- 5 Amazon Bullets -->
+                        <div class="space-y-1 text-[11px] text-stone-700">
+                            <p class="font-bold text-stone-900">About this handcrafted item:</p>
+                            <ul class="list-disc pl-4 space-y-0.5 text-stone-600 text-[10px]">
+                                <li><b>Authentic Handcrafted:</b> Hand-woven on pit looms in Varanasi.</li>
+                                <li><b>100% Pure Mulberry Silk:</b> Natural dyes and gold zari border work.</li>
+                                <li><b>MoSJE Certified:</b> Beneficiary of Ministry of Social Justice & Empowerment.</li>
+                                <li><b>Prime Delivery Eligible:</b> Dispatch within 24 hours.</li>
+                            </ul>
+                        </div>
+
+                        <button onclick="triggerCustomerPurchase('Amazon Karigar')" class="w-full bg-amber-500 hover:bg-amber-600 text-stone-950 font-black py-3 rounded-2xl text-xs shadow-md transition active:scale-95">
+                            Buy Now on Amazon Karigar
+                        </button>
                     </div>
                 </div>
             </div>
 
             <!-- =================================================================== -->
-            <!-- 3. MINISTRY CENTRAL PORTAL                                          -->
+            <!-- 4. MINISTRY CENTRAL PORTAL                                          -->
             <!-- =================================================================== -->
             <div id="adminSection" class="flex-1 bg-white rounded-3xl p-6 shadow-sm border border-stone-200 space-y-6 text-left">
                 <div class="flex justify-between items-center border-b pb-4">
@@ -636,20 +710,20 @@
                             <span class="w-2 h-2 rounded-full bg-emerald-500 animate-ping"></span>
                             <h3 class="text-xl font-black text-stone-900 tracking-tight">MoSJE Central Analytics & Market Linkage</h3>
                         </div>
-                        <p class="text-xs text-stone-500 mt-0.5">Ministry of Social Justice and Empowerment &bull; Beneficiary Monitoring & ONDC Hub</p>
+                        <p class="text-xs text-stone-500 mt-0.5">Ministry of Social Justice and Empowerment &bull; Beneficiary Monitoring & Multi-Channel Hub</p>
                     </div>
                     <div class="flex items-center space-x-2">
                         <span class="bg-emerald-100 text-emerald-800 text-xs font-bold px-3 py-1 rounded-full border border-emerald-300 flex items-center shadow-sm">
                             <span class="w-2 h-2 rounded-full bg-emerald-500 mr-1.5 animate-pulse"></span>
-                            ONDC Network Live
+                            All 5 Networks Live
                         </span>
                         <a href="http://127.0.0.1:8000/export/ondc" target="_blank" class="bg-stone-900 hover:bg-stone-800 text-white text-xs font-bold px-3 py-1 rounded-full shadow-sm">
-                            View Beckn JSON
+                            Beckn Schema
                         </a>
                     </div>
                 </div>
 
-                <!-- 4 Live Counter Cards -->
+                <!-- 4 Live Counters -->
                 <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
                     <div class="bg-[#faf8f5] p-4 rounded-2xl border border-stone-200">
                         <p class="text-[10px] font-bold text-stone-400 uppercase tracking-wider">Artisans Onboarded</p>
@@ -659,7 +733,7 @@
                     <div id="catalogMetricBox" class="bg-[#faf8f5] p-4 rounded-2xl border border-stone-200 transition-all">
                         <p class="text-[10px] font-bold text-stone-400 uppercase tracking-wider">Catalogs Generated</p>
                         <p id="metricCatalogs" class="text-2xl font-black text-terracotta-600 mt-1">5,846</p>
-                        <p class="text-[10px] text-stone-400 mt-0.5">4K Studio Standards</p>
+                        <p class="text-[10px] text-stone-400 mt-0.5">Across 5 Channels</p>
                     </div>
                     <div class="bg-[#faf8f5] p-4 rounded-2xl border border-stone-200">
                         <p class="text-[10px] font-bold text-stone-400 uppercase tracking-wider">PM Vishwakarma IDs</p>
@@ -686,7 +760,7 @@
                                     <th class="py-3 px-4">Cluster / Craft</th>
                                     <th class="py-3 px-4">State</th>
                                     <th class="py-3 px-4">Artisans</th>
-                                    <th class="py-3 px-4">Market Status</th>
+                                    <th class="py-3 px-4">Multi-Market Status</th>
                                 </tr>
                             </thead>
                             <tbody class="divide-y divide-stone-100 text-stone-700">
@@ -694,25 +768,25 @@
                                     <td class="py-3 px-4 font-bold text-stone-900">Varanasi Silk Weavers</td>
                                     <td class="py-3 px-4">Uttar Pradesh</td>
                                     <td class="py-3 px-4">420</td>
-                                    <td class="py-3 px-4"><span class="bg-emerald-100 text-emerald-800 px-2.5 py-0.5 rounded-full font-bold">ONDC Connected</span></td>
+                                    <td class="py-3 px-4"><span class="bg-emerald-100 text-emerald-800 px-2.5 py-0.5 rounded-full font-bold">5 Channels Active</span></td>
                                 </tr>
                                 <tr>
                                     <td class="py-3 px-4 font-bold text-stone-900">Bastar Dokra Metal Casting</td>
                                     <td class="py-3 px-4">Chhattisgarh</td>
                                     <td class="py-3 px-4">280</td>
-                                    <td class="py-3 px-4"><span class="bg-emerald-100 text-emerald-800 px-2.5 py-0.5 rounded-full font-bold">ONDC Connected</span></td>
+                                    <td class="py-3 px-4"><span class="bg-emerald-100 text-emerald-800 px-2.5 py-0.5 rounded-full font-bold">5 Channels Active</span></td>
                                 </tr>
                                 <tr>
                                     <td class="py-3 px-4 font-bold text-stone-900">Jaipur Blue Pottery</td>
                                     <td class="py-3 px-4">Rajasthan</td>
                                     <td class="py-3 px-4">350</td>
-                                    <td class="py-3 px-4"><span class="bg-emerald-100 text-emerald-800 px-2.5 py-0.5 rounded-full font-bold">ONDC Connected</span></td>
+                                    <td class="py-3 px-4"><span class="bg-emerald-100 text-emerald-800 px-2.5 py-0.5 rounded-full font-bold">5 Channels Active</span></td>
                                 </tr>
                                 <tr>
                                     <td class="py-3 px-4 font-bold text-stone-900">Kutch Rogan & Bandhani</td>
                                     <td class="py-3 px-4">Gujarat</td>
                                     <td class="py-3 px-4">370</td>
-                                    <td class="py-3 px-4"><span class="bg-emerald-100 text-emerald-800 px-2.5 py-0.5 rounded-full font-bold">ONDC Connected</span></td>
+                                    <td class="py-3 px-4"><span class="bg-emerald-100 text-emerald-800 px-2.5 py-0.5 rounded-full font-bold">5 Channels Active</span></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -738,26 +812,24 @@
                 </div>
             </div>
 
-            <!-- Shilpi Chat Area -->
             <div id="shilpiAnswerBox" class="bg-white p-3.5 rounded-2xl border border-stone-200 text-left space-y-2 max-h-48 overflow-y-auto">
                 <p id="shilpiAnswerText" class="text-xs text-stone-700 leading-relaxed font-medium">
-                    नमस्ते! मैं शिल्प सखी हूँ। सरकारी योजनाओं, टूलकिट भत्ते, सही मूल्य और मेलों के बारे में मुझसे पूछें।
+                    नमस्ते! मैं शिल्प सखी हूँ। सरकारी योजनाओं, टूलकिट भत्ते, सही मूल्य और अमेज़न/ONDC पर बिक्री के बारे में मुझसे पूछें।
                 </p>
                 <audio id="shilpiAudioPlayer" controls class="hidden w-full h-6 scale-95 origin-left mt-1"></audio>
             </div>
 
-            <!-- Quick Question Chips -->
             <div class="space-y-1.5 text-left">
                 <p class="text-[9px] font-bold text-stone-400 uppercase tracking-wider">Quick Artisan Questions:</p>
                 <div class="grid grid-cols-1 gap-1.5 text-[10px]">
                     <button onclick="askShilpiFast('PM Vishwakarma 15000 toolkit kaise milega?')" class="bg-stone-100 hover:bg-amber-100 p-2 rounded-xl text-stone-800 text-left font-semibold truncate transition">
                         🔹 ₹15,000 टूलकिट प्रोत्साहन कैसे मिलेगा?
                     </button>
+                    <button onclick="askShilpiFast('Amazon Karigar aur Flipkart par kaise bikega?')" class="bg-stone-100 hover:bg-amber-100 p-2 rounded-xl text-stone-800 text-left font-semibold truncate transition">
+                        🔹 अमेज़न कारीगर और फ्लिपकार्ट पर कैसे बिकेगा?
+                    </button>
                     <button onclick="askShilpiFast('Surajkund mela me free stall kaise book kare?')" class="bg-stone-100 hover:bg-amber-100 p-2 rounded-xl text-stone-800 text-left font-semibold truncate transition">
                         🔹 सूरजकुंड मेले में स्टॉल कैसे बुक करें?
-                    </button>
-                    <button onclick="askShilpiFast('ONDC par mera saman kaise bikega?')" class="bg-stone-100 hover:bg-amber-100 p-2 rounded-xl text-stone-800 text-left font-semibold truncate transition">
-                        🔹 ONDC पर मेरा सामान कैसे बिकेगा?
                     </button>
                 </div>
             </div>
@@ -797,9 +869,8 @@
         </div>
     </div>
 
-    <!-- JAVASCRIPT: LOGIC FOR FULL-LOOP E-COMMERCE & PROTOTYPE -->
+    <!-- JAVASCRIPT: UNIVERSAL E-COMMERCE & HARDWARE LOGIC -->
     <script>
-        // State
         let currentLang = 'hi';
         let currentTab = 'home';
         let capturedImageBlob = null;
@@ -815,7 +886,7 @@
         let currentPrice = 2900;
         let currentProductTitle = "Handwoven Banarasi Katan Silk Scarf";
 
-        // 1. WEBCAM & CAMERA LOGIC
+        // 1. CAMERA LOGIC
         async function startLiveCamera() {
             const video = document.getElementById('webcamVideo');
             const placeholder = document.getElementById('cameraPlaceholder');
@@ -835,7 +906,7 @@
                 document.getElementById('photoBadge').innerText = "Camera Live";
                 document.getElementById('photoBadge').className = "text-[9px] font-bold text-emerald-700 bg-emerald-50 px-2.5 py-0.5 rounded-full border border-emerald-200";
             } catch (err) {
-                alert("Camera access was not granted: " + err.message + "\nYou can use the Upload Photo button!");
+                alert("Camera access was not granted: " + err.message + "\nYou can use Upload Photo!");
             }
         }
 
@@ -914,7 +985,7 @@
             }
         }
 
-        // 2. REAL VOICE SPEECH RECOGNITION (WEB SPEECH API)
+        // 2. SPEECH RECOGNITION
         function toggleVoiceRecording() {
             const btn = document.getElementById('voiceRecordBtn');
             const status = document.getElementById('voiceRecordStatus');
@@ -925,7 +996,7 @@
             const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
 
             if (!SpeechRecognition) {
-                alert("Speech recognition is not supported in this browser. Please use Google Chrome or click a preset below!");
+                alert("Speech recognition is not supported in this browser. Please use Chrome or click a preset below!");
                 return;
             }
 
@@ -954,7 +1025,6 @@
                 };
 
                 recognition.onerror = (err) => {
-                    console.error("Speech error:", err);
                     stopRecordingVisuals();
                 };
 
@@ -1033,7 +1103,6 @@
                 currentPrice = data.pricing.recommended_retail_price;
                 currentProductTitle = data.catalog.title_en;
 
-                // Populate UI Card
                 document.getElementById('resTitleEn').innerText = data.catalog.title_en;
                 document.getElementById('resTitleHi').innerText = data.catalog.title_hi;
                 document.getElementById('resPrice').innerText = "₹ " + currentPrice.toLocaleString();
@@ -1044,21 +1113,25 @@
                 const studioImgUrl = "http://127.0.0.1:8000" + data.enhanced_studio_url;
                 document.getElementById('resEnhancedImg').src = studioImgUrl;
 
-                // Update Buyer Storefront preview target
+                // Sync Storefronts
                 document.getElementById('storefrontTitle').innerText = data.catalog.title_en;
                 document.getElementById('storefrontStory').innerText = `"${data.catalog.story_en}"`;
                 document.getElementById('storefrontPrice').innerText = "₹ " + currentPrice.toLocaleString();
                 document.getElementById('storefrontImg').src = studioImgUrl;
 
-                // PDF Standee Link
+                document.getElementById('amazonTitle').innerText = data.catalog.title_en;
+                document.getElementById('amazonPrice').innerText = "₹ " + currentPrice.toLocaleString();
+                document.getElementById('amazonImg').src = studioImgUrl;
+
+                // Standee PDF link
                 document.getElementById('standeePdfLink').href = `http://127.0.0.1:8000/api/v1/products/${currentProductId}/mela-standee-pdf?title=${encodeURIComponent(data.catalog.title_en)}&craft=${encodeURIComponent(data.catalog.craft_technique)}&price=${currentPrice}`;
 
-                // Audio Playback
+                // Audio player
                 const audioPlayer = document.getElementById('ttsAudioPlayer');
                 audioPlayer.src = `http://127.0.0.1:8000/static/audio/audio_${currentProductId}.mp3`;
                 audioPlayer.load();
 
-                // Live Ministry Analytics Counter
+                // Ministry Counter update
                 let curCount = parseInt(document.getElementById('metricCatalogs').innerText.replace(',', ''));
                 document.getElementById('metricCatalogs').innerText = (curCount + 1).toLocaleString();
                 const box = document.getElementById('catalogMetricBox');
@@ -1078,22 +1151,37 @@
             }
         }
 
-        // 4. PUBLISH TO ONDC & LIVE BUYER PURCHASE SIMULATION
-        function publishToOndcNetwork() {
-            const btn = document.getElementById('btnPublishOndc');
-            btn.innerHTML = `<i class="fas fa-spinner fa-spin"></i> Broadcasting to Beckn ONDC Gateway...`;
-            setTimeout(() => {
-                btn.className = "w-full bg-emerald-600 text-white font-extrabold py-2.5 rounded-xl text-xs shadow transition";
-                btn.innerHTML = `<i class="fas fa-check-circle"></i> Published Live on ONDC (Paytm, Mystore)`;
-                document.getElementById('ondcPublishedStatus').classList.remove('hidden');
-            }, 800);
-        }
-
-        async function triggerCustomerPurchase() {
-            const btn = document.getElementById('btnBuyNowOndc');
-            btn.innerHTML = `<i class="fas fa-spinner fa-spin mr-1"></i> Processing UPI Payment...`;
+        // 4. MULTI-CHANNEL 5-MARKETPLACE PUBLISHING
+        async function publishToAllFiveChannels() {
+            const btn = document.getElementById('btnMasterPublish');
+            btn.innerHTML = `<i class="fas fa-spinner fa-spin"></i> Synchronizing with 5 Commercial Gateways...`;
             btn.disabled = true;
 
+            try {
+                const res = await fetch("http://127.0.0.1:8000/api/v1/channels/publish-multi", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ product_id: currentProductId })
+                });
+                const data = await res.json();
+                
+                document.getElementById('badgeAsin').innerText = "ASIN: " + data.channels.amazon_karigar.asin;
+                document.getElementById('badgeFsn').innerText = "FSN: " + data.channels.flipkart_samarth.fsn;
+                document.getElementById('badgeEtsy').innerText = `Price: ${data.channels.etsy_global.price_usd} • International Export Active`;
+
+                btn.className = "w-full bg-emerald-600 text-white font-black py-2.5 rounded-xl text-xs shadow-lg transition flex items-center justify-center space-x-2";
+                btn.innerHTML = `<i class="fas fa-check-circle"></i> Successfully Published to All 5 Marketplaces!`;
+                document.getElementById('multiSyncStatus').classList.remove('hidden');
+            } catch (err) {
+                console.error(err);
+                alert("Failed to reach multi-channel publishing service.");
+            } finally {
+                setTimeout(() => { btn.disabled = false; }, 2000);
+            }
+        }
+
+        // 5. LIVE BUYER PURCHASE (PAYTM / AMAZON SIMULATION)
+        async function triggerCustomerPurchase(sourcePlatform) {
             try {
                 const res = await fetch("http://127.0.0.1:8000/api/v1/orders/simulate-ondc-order", {
                     method: "POST",
@@ -1103,17 +1191,14 @@
                         buyer_name: "Suman Rao",
                         city: "Mumbai, Maharashtra",
                         quantity: 1,
-                        buyer_app: "Paytm ONDC Store"
+                        buyer_app: sourcePlatform
                     })
                 });
                 const order = await res.json();
 
-                btn.className = "bg-emerald-600 text-white font-black py-3 rounded-2xl text-xs shadow-lg flex items-center justify-center space-x-1.5";
-                btn.innerHTML = `<i class="fas fa-check-circle"></i> Order Placed (${order.order_id})`;
-
-                // 🔔 Notify Artisan Phone Simulator
+                // Notify Artisan Phone
                 const toast = document.getElementById('artisanOrderToast');
-                document.getElementById('toastOrderText').innerText = `₹ ${order.total_amount.toLocaleString()} received via UPI from ${order.buyer_name} (${order.delivery_city})`;
+                document.getElementById('toastOrderText').innerText = `₹ ${order.total_amount.toLocaleString()} received via UPI from ${order.buyer_name} (${sourcePlatform})`;
                 toast.classList.remove('hidden');
 
                 // Increment Artisan Earnings
@@ -1125,35 +1210,28 @@
                 salesBox.classList.add('bg-emerald-100', 'border-emerald-400');
                 setTimeout(() => salesBox.classList.remove('bg-emerald-100', 'border-emerald-400'), 2000);
 
-                // Play notification chime
+                // Sound effect
                 try {
                     let audioContext = new (window.AudioContext || window.webkitAudioContext)();
                     let osc = audioContext.createOscillator();
                     let gain = audioContext.createGain();
                     osc.connect(gain);
                     gain.connect(audioContext.destination);
-                    osc.frequency.setValueAtTime(587.33, audioContext.currentTime); // D5
-                    osc.frequency.setValueAtTime(880, audioContext.currentTime + 0.1); // A5
+                    osc.frequency.setValueAtTime(587.33, audioContext.currentTime);
+                    osc.frequency.setValueAtTime(880, audioContext.currentTime + 0.1);
                     gain.gain.setValueAtTime(0.3, audioContext.currentTime);
                     gain.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.5);
                     osc.start();
                     osc.stop(audioContext.currentTime + 0.5);
                 } catch(e) {}
 
-                alert(`Order Confirmed on ONDC!\nOrder ID: ${order.order_id}\nPayment: Settled directly into Ramprasad's UPI account.`);
+                alert(`Order Confirmed on ${sourcePlatform}!\nOrder ID: ${order.order_id}\nAmount: ₹${order.total_amount}\nSettled directly to Ramprasad's UPI account.`);
             } catch (err) {
                 console.error(err);
-                alert("Order failed to reach backend.");
-            } finally {
-                setTimeout(() => {
-                    btn.disabled = false;
-                    btn.className = "bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-black py-3 rounded-2xl text-xs shadow-lg flex items-center justify-center space-x-1.5";
-                    btn.innerHTML = `<i class="fas fa-bolt"></i> <span>Buy Now via UPI (Order)</span>`;
-                }, 3000);
             }
         }
 
-        // 5. "सौदा रक्षक" (BARGAINING SHIELD WIDGET)
+        // 6. "सौदा रक्षक" (BARGAINING SHIELD)
         async function checkBargainShield() {
             const offer = parseFloat(document.getElementById('inputOfferPrice').value);
             if (!offer || isNaN(offer)) {
@@ -1186,7 +1264,7 @@
             }
         }
 
-        // 6. "शिल्प सखी" (SHILPI AI VOICE ASSISTANT)
+        // 7. "शिल्प सखी" (SHILPI VOICE ASSISTANT)
         function openShilpiModal() {
             document.getElementById('shilpiModal').classList.remove('hidden');
         }
@@ -1221,7 +1299,7 @@
             if (q) askShilpiFast(q);
         }
 
-        // 7. CATALOGS LIST FROM DB
+        // 8. CATALOGS LIST
         async function loadArtisanCatalogs() {
             const container = document.getElementById('catalogsListContainer');
             try {
@@ -1250,7 +1328,7 @@
                                 <h5 class="text-xs font-bold text-stone-900 leading-tight truncate mt-1">${p.title_en}</h5>
                                 <div class="flex justify-between items-baseline mt-1">
                                     <span class="text-sm font-black text-emerald-700">₹ ${p.retail_price.toLocaleString()}</span>
-                                    <span class="text-[9px] font-bold text-emerald-600 bg-emerald-50 px-1.5 py-0.5 rounded">ONDC Active</span>
+                                    <span class="text-[9px] font-bold text-emerald-600 bg-emerald-50 px-1.5 py-0.5 rounded">5 Channels Live</span>
                                 </div>
                             </div>
                         </div>
@@ -1273,7 +1351,6 @@
 
         function showCustomQrModal(title, price, qrUrl) {
             document.getElementById('waTitle').innerText = title;
-            document.getElementById('waStory').innerText = "Direct UPI payment to artisan bank account.";
             document.getElementById('waPrice').innerText = "Amount: ₹ " + price.toLocaleString();
             document.getElementById('waQrImg').src = qrUrl;
             document.getElementById('waModal').classList.remove('hidden');
@@ -1286,44 +1363,55 @@
                 `👤 *Artisan:* Ramprasad Vishwakarma (PM-UP-4210)%0A` +
                 `✅ *MoSJE Certified Ethical Craft*%0A` +
                 `📲 *Pay via UPI:* upi://pay?pa=${currentProductId}@upi&pn=Ramprasad&am=${currentPrice}%0A%0A` +
-                `_Support Indian rural artisans with 0% middleman cut._`;
+                `_Support Indian rural artisans across 5 major marketplaces._`;
             window.open(`https://api.whatsapp.com/send?text=${text}`, '_blank');
         }
 
-        // 8. MASTER VIEW SWITCHER
+        // 9. MASTER VIEW SWITCHER
         function switchMasterView(mode) {
             const m = document.getElementById('mobileSection');
             const s = document.getElementById('storefrontSection');
+            const az = document.getElementById('amazonSection');
             const a = document.getElementById('adminSection');
 
             const bm = document.getElementById('btnViewMobile');
             const bs = document.getElementById('btnViewStorefront');
+            const baz = document.getElementById('btnViewAmazon');
             const ba = document.getElementById('btnViewAdmin');
             const bsp = document.getElementById('btnViewSplit');
 
-            [bm, bs, ba, bsp].forEach(b => b.className = "px-3.5 py-1.5 font-bold rounded-xl text-stone-400 hover:text-white transition");
+            [bm, bs, baz, ba, bsp].forEach(b => b.className = "px-3 py-1.5 font-bold rounded-xl text-stone-400 hover:text-white transition");
 
             if (mode === 'mobile') {
                 m.classList.remove('hidden');
                 s.classList.add('hidden');
+                az.classList.add('hidden');
                 a.classList.add('hidden');
-                bm.className = "px-3.5 py-1.5 font-bold rounded-xl bg-terracotta-600 text-white shadow";
+                bm.className = "px-3 py-1.5 font-bold rounded-xl bg-terracotta-600 text-white shadow";
             } else if (mode === 'storefront') {
                 m.classList.add('hidden');
                 s.classList.remove('hidden');
+                az.classList.add('hidden');
                 a.classList.add('hidden');
-                bs.className = "px-3.5 py-1.5 font-bold rounded-xl bg-blue-600 text-white shadow";
+                bs.className = "px-3 py-1.5 font-bold rounded-xl bg-blue-600 text-white shadow";
+            } else if (mode === 'amazon') {
+                m.classList.add('hidden');
+                s.classList.add('hidden');
+                az.classList.remove('hidden');
+                a.classList.add('hidden');
+                baz.className = "px-3 py-1.5 font-bold rounded-xl bg-amber-500 text-stone-950 shadow";
             } else if (mode === 'admin') {
                 m.classList.add('hidden');
                 s.classList.add('hidden');
+                az.classList.add('hidden');
                 a.classList.remove('hidden');
-                ba.className = "px-3.5 py-1.5 font-bold rounded-xl bg-amber-600 text-white shadow";
+                ba.className = "px-3 py-1.5 font-bold rounded-xl bg-emerald-600 text-white shadow";
             } else {
-                // Split View
                 m.classList.remove('hidden');
                 s.classList.remove('hidden');
+                az.classList.add('hidden');
                 a.classList.remove('hidden');
-                bsp.className = "px-3.5 py-1.5 font-bold rounded-xl bg-gradient-to-r from-terracotta-600 to-amber-600 text-white shadow-md transition";
+                bsp.className = "px-3 py-1.5 font-bold rounded-xl bg-gradient-to-r from-terracotta-600 to-amber-600 text-white shadow-md transition";
             }
         }
 
@@ -1380,7 +1468,6 @@
             document.getElementById('waModal').classList.add('hidden');
         }
 
-        // Initialize on page load
         window.addEventListener('DOMContentLoaded', () => {
             loadArtisanCatalogs();
             fetch("http://127.0.0.1:8000/api/v1/analytics/ministry")
