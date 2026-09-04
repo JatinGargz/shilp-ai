@@ -1,196 +1,238 @@
-# 🇮🇳 SHILP AI — Team Onboarding & Kickoff Guide
+# 🇮🇳 SHILP AI — Complete Beginner's Team Onboarding Guide
 > **SIH 2026 Problem Statement ID:** 26090  
 > **Ministry:** Ministry of Social Justice and Empowerment (MoSJE)  
 > **Project Repository:** `shilp-ai`  
 
 ---
 
-## 👋 Welcome Team!
-We are building **SHILP AI (शिल्प)** — an AI-powered platform empowering rural, marginalized, and PM Vishwakarma artisans to catalog their crafts, generate studio-grade photography, calculate fair prices, and sell directly via ONDC and WhatsApp using only their **voice and phone camera**.
+## 🎯 Important Update: Our Winning Frontend Strategy
+To save 15+ hours of Android SDK / Gradle troubleshooting and ensure our live demo never crashes in front of the judges, **we are using a Unified Web App with an Artisan Mobile Frame Simulator (PWA)** instead of a native APK.
 
-To ensure everyone can work fast and independently **without blocking each other or causing Git merge conflicts**, follow this guide carefully.
+```
+┌────────────────────────────────────────────────────────────────────────────────────────┐
+│                        DUAL-SCREEN HACKATHON BOOTH VIEW                                │
+│                                                                                        │
+│   📱 LEFT SIDE: Artisan Mobile Simulator (PWA) │  💻 RIGHT SIDE: Ministry Dashboard    │
+│   • Runs inside a realistic phone mockup frame │  • Live counters for MoSJE officers   │
+│   • Tap Mic -> Speak Hindi -> Take Photo       │  • State cluster registry table       │
+│   • 4K Studio Image + WhatsApp Card + UPI QR   │  • Counters update in real time!      │
+└────────────────────────────────────────────────────────────────────────────────────────┘
+```
+> **How to pitch this to SIH Judges:**  
+> *"We architected this as an ultra-lightweight Progressive Web App (<2MB) because rural artisans use budget Android phones with low storage where heavy 60MB Play Store apps fail to install. With a PWA, any artisan can tap a WhatsApp link and start cataloging immediately with zero installation barrier."*
 
 ---
 
-## 🛡️ The Golden Rule: Zero-Conflict File Ownership
-Each person/sub-team has their **own dedicated files and folders**. **Do NOT edit files assigned to another teammate.**
+## 🛡️ Zero-Conflict Team Ownership Map
+Every team member works **only inside their assigned files**. Because no two people edit the same file, Git merge conflicts are virtually impossible.
 
 ```
 shilp-ai/
 │
 ├── 🎨 FRONTEND WORKSPACE ──────────> Prakriti & Saira
-│   ├── frontend-mobile/             (Voice-first mobile artisan app)
-│   └── frontend-admin/              (Ministry analytics & B2B dashboard)
+│   └── frontend/index.html          (Unified Web App: Mobile Simulator + Ministry Dashboard)
 │
 ├── ⚙️ BACKEND & DATABASE WORKSPACE ──> Anikeat
-│   ├── backend/app/models/          (SQLAlchemy database tables)
-│   └── backend/app/api/             (CRUD endpoints & file upload handlers)
+│   ├── backend/app/models/          (Database tables & SQLAlchemy models)
+│   └── backend/app/api/             (CRUD routes & file upload endpoints)
 │
 ├── 🧠 AI & GEN-AI WORKSPACE ────────> Kartik Dhiman
 │   ├── backend/app/services/image_studio.py   (rembg + OpenCV 1080x1080 canvas)
-│   └── backend/app/services/catalog_engine.py (Whisper STT + Groq Llama-3 catalog)
+│   ├── backend/app/services/catalog_engine.py (Whisper STT + Groq Llama-3 catalog)
+│   └── backend/test_kartik.py                 (Kartik's 1-click test sandbox)
 │
 ├── 📊 ML & PRICING WORKSPACE ────────> Ishaan Anand
-│   └── backend/app/services/pricing_engine.py (Ethical pricing + B2B buyer matcher)
+│   ├── backend/app/services/pricing_engine.py (Ethical wage floor + B2B buyer matcher)
+│   └── backend/test_ishaan.py                 (Ishaan's 1-click test sandbox)
 │
 └── 🎖️ INTEGRATIONS & DEMO ───────────> Jatin
     ├── backend/app/services/export_service.py (ONDC Beckn JSON + Mela Standee PDF + UPI QR)
     ├── backend/app/schemas/contracts.py       (FROZEN CONTRACT - Do not change)
-    └── demo-assets/                           (Physical demo samples & recordings)
+    └── demo-assets/                           (Physical craft items & test samples)
 ```
 
 ---
 
-## ⚡ 5-Minute Local Setup (For All Developers)
+## 🛠️ Step 0: Absolute Beginner Setup (For All Teammates)
 
-### 1. Clone & Set Up Git
-```bash
-git clone <repo-url>
-cd shilp-ai
-```
+If you have never worked on a group coding project before, follow these 4 simple steps:
 
-### 2. Set Up Your Dedicated Branch
-Always work on your own branch. Never commit directly to `main`:
-* **Prakriti & Saira:** `git checkout -b frontend/artisan-mobile` or `frontend/ministry-admin`
-* **Anikeat:** `git checkout -b backend/database-apis`
-* **Kartik Dhiman:** `git checkout -b ai/vision-voice-pipeline`
-* **Ishaan Anand:** `git checkout -b ml/pricing-engine`
+1. **Install Required Software:**
+   * Download and install **[VS Code](https://code.visualstudio.com/)**.
+   * Download and install **[Python 3.10+](https://www.python.org/downloads/)** (Check the box that says *"Add python.exe to PATH"* during installation!).
+   * Download and install **[Git](https://git-scm.com/)**.
+2. **Open the Project:**
+   * Open VS Code $\rightarrow$ `File` $\rightarrow$ `Open Folder...` $\rightarrow$ Select the `shilp-ai` folder.
+3. **Open Terminal in VS Code:**
+   * Press `Ctrl + ~` (or go to menu: `Terminal` $\rightarrow$ `New Terminal`).
+4. **Create Your Personal Branch:**
+   * Run the command matching your name:
+     ```bash
+     # Prakriti & Saira:
+     git checkout -b frontend/dual-view-suite
 
-### 3. Start the Backend Server (With Live Mocks)
-```bash
-cd backend
-python -m venv venv
-venv\Scripts\activate          # Windows (or source venv/bin/activate on Mac/Linux)
-pip install -r requirements.txt
-uvicorn app.main:app --reload --port 8000
-```
-> **Notice:** The backend is **already running with mock data** matching our frozen API contract! Frontend developers can start building screens immediately without waiting for AI models to be finished.
+     # Anikeat:
+     git checkout -b backend/database-apis
 
----
+     # Kartik Dhiman:
+     git checkout -b ai/vision-voice-pipeline
 
-## 👤 Step-by-Step Playbooks for Each Teammate
-
----
-
-### 🎨 1. Prakriti & Saira (UI/UX & Frontend)
-* **Assigned Folders:** `frontend-mobile/` and `frontend-admin/`
-* **Your Mission:** Build a voice-first interface so simple that a low-literacy artisan can catalog a craft in 3 taps, plus an executive analytics dashboard for MoSJE officers.
-
-#### Step-by-Step Action Plan:
-1. **Figma Wireframes (Hours 0–4):**
-   * **Mobile App (Artisan):**
-     * *Screen 1 (Home):* Prominent microphone button (*"Tap to Speak"*), camera button, and language toggle (Hindi / English / Marathi).
-     * *Screen 2 (Studio Review):* Split slider showing raw uploaded photo vs. clean white studio output.
-     * *Screen 3 (Catalog & Voice-Back):* Bilingual title, heritage story, fair price tag, and an audio player that speaks back the summary.
-     * *Screen 4 (Success):* 1-Click *"Share on WhatsApp"* and *"Download Mela QR Standee"* buttons.
-   * **Admin Dashboard (Ministry):**
-     * Central map/cards showing total artisans onboarded, catalogs created, and PM Vishwakarma linked beneficiaries.
-2. **Frontend Coding (Hours 4–18):**
-   * Build the UI in your preferred framework (React / Next.js / Flutter / React Native) inside `frontend-mobile/` and `frontend-admin/`.
-3. **Connect to the Live Mock Backend:**
-   * Make a `POST` request to `http://localhost:8000/api/v1/media/process-raw`
-   * You will receive real mock data matching [`backend/app/schemas/contracts.py`](file:///C:/Users/Jatin/.gemini/antigravity/scratch/shilp-ai/backend/app/schemas/contracts.py).
+     # Ishaan Anand:
+     git checkout -b ml/pricing-engine
+     ```
 
 ---
 
-### ⚙️ 2. Anikeat (Backend & Database)
-* **Assigned Files:** `backend/app/models/models.py`, `backend/app/api/`, `backend/app/core/database.py`
-* **Your Mission:** Build the database engine and API endpoints connecting the frontend to Kartik's AI and Ishaan's pricing algorithms.
-
-#### Step-by-Step Action Plan:
-1. **Database Models (`backend/app/models/models.py`):**
-   * Refine and test the SQLAlchemy models: `Artisan`, `Product`, `ProductMedia`, `ProductPricing`, and `B2BEnquiry`.
-   * Ensure relationships between `Product` and `Artisan` are working smoothly with SQLite / PostgreSQL.
-2. **API Routes (`backend/app/api/`):**
-   * `POST /api/v1/media/upload`: Store uploaded camera photos and audio files to disk or cloud storage.
-   * `GET /api/v1/products`: Return all cataloged products for the marketplace grid.
-   * `GET /api/v1/products/{id}`: Return single product details.
-   * `POST /api/v1/products/{id}/enquiry`: Save B2B wholesale enquiries.
-3. **Pipeline Orchestration:**
-   * In `backend/app/main.py`, connect the uploaded files to Kartik's `enhance_craft_image()` and `generate_catalog_from_voice()`, and Ishaan's `calculate_fair_pricing()`.
+## 👤 Beginner Playbook for Each Teammate
 
 ---
 
-### 🧠 3. Kartik Dhiman (AI / GenAI & Vision)
-* **Assigned Files:** 
-  * [`backend/app/services/image_studio.py`](file:///C:/Users/Jatin/.gemini/antigravity/scratch/shilp-ai/backend/app/services/image_studio.py)
-  * [`backend/app/services/catalog_engine.py`](file:///C:/Users/Jatin/.gemini/antigravity/scratch/shilp-ai/backend/app/services/catalog_engine.py)
-* **Your Mission:** Convert messy phone photos into 4K e-commerce studio shots, and translate spoken dialect voice notes into bilingual, structured catalog listings.
+### 🎨 1. For Prakriti & Saira (UI/UX & Frontend)
+> **Goal:** Design and polish the user interface. You don't need any complex frameworks to start!
 
-#### Step-by-Step Action Plan:
-1. **Image Studio Pipeline (`image_studio.py`):**
-   * Use `rembg` (u2net / BiRefNet) to strip messy table/floor backgrounds from incoming photos.
-   * Use OpenCV/PIL to boost natural craft color saturation (+15%).
-   * Create a $1080 \times 1080$ pure white canvas and center the product.
-2. **Speech-to-Text (`catalog_engine.py`):**
-   * Implement `transcribe_audio_voice()` using OpenAI Whisper or Bhashini STT API to transcribe Hindi/Hinglish audio notes into text.
-3. **Guardrailed Catalog Generator (`catalog_engine.py`):**
-   * Call Groq Cloud API using `llama-3.3-70b-versatile` with JSON mode enabled.
-   * Enforce strict zero-hallucination rules (only extract stated facts; unknown dimensions must be `null`).
-   * Generate an English title, Hindi title, 2-line emotional artisan heritage story, and bullet points.
-4. **Voice-Back (TTS):**
-   * Generate a short Hindi audio confirmation using `gTTS` so illiterate artisans can verify their listing by listening.
+#### How to Start (Step-by-Step):
+1. **View the Working App Right Now:**
+   * Double-click [`frontend/index.html`](file:///C:/Users/Jatin/.gemini/antigravity/scratch/shilp-ai/frontend/index.html) in your file explorer. It will open directly in Google Chrome!
+   * Notice the 3 buttons at the top:
+     * **Artisan Mobile (PWA):** Shows the mobile phone mockup frame.
+     * **Ministry Central Dashboard:** Shows the executive analytics view.
+     * **Dual-Screen Live Booth View:** Shows both side-by-side (our hackathon presentation view!).
+2. **Test the Live Connection:**
+   * Click the big orange microphone button inside the phone frame. It will call the backend at `http://localhost:8000/api/v1/media/process-raw` and instantly display the 4K studio image, generated title, fair price, and WhatsApp card!
+3. **What You Need to Polish in `frontend/index.html`:**
+   * **Colors:** Use earthy, cultural Indian tones (Terracotta Orange `#D9531E`, Heritage Saffron `#E07A5F`, Deep Slate `#1F2937`, Warm Cream `#FFFBF5`).
+   * **Artisan Flow:** Add an image upload preview slider (Before vs. After).
+   * **Ministry View:** Add a state selector dropdown (Uttar Pradesh, Chhattisgarh, Rajasthan, Gujarat).
+   * **Audio Player:** Add an audio `<audio>` player element that automatically plays the spoken Hindi confirmation.
 
 ---
 
-### 📊 4. Ishaan Anand (ML / Pricing & Market Linkage)
-* **Assigned File:** [`backend/app/services/pricing_engine.py`](file:///C:/Users/Jatin/.gemini/antigravity/scratch/shilp-ai/backend/app/services/pricing_engine.py)
-* **Your Mission:** Build an explainable, data-backed dynamic pricing model and B2B buyer recommendation engine so artisans are never cheated by middlemen.
+### ⚙️ 2. For Anikeat (Backend & Database)
+> **Goal:** Run the FastAPI backend server, create database tables, and store product records.
 
-#### Step-by-Step Action Plan:
-1. **Cost Floor & Wage Guarantee Formula:**
-   * Calculate:
-     $$\text{Cost Floor} = \text{Raw Material Cost} + (\text{Labor Hours} \times ₹100/\text{hr Skilled Wage}) + \text{Packaging}$$
-2. **Category Multipliers:**
-   * Apply craft-specific fair markups:
+#### How to Start (Step-by-Step):
+1. **Start the Backend Server:**
+   * Open the VS Code terminal and run:
+     ```bash
+     cd backend
+     python -m uvicorn app.main:app --reload --port 8000
+     ```
+2. **Open the Interactive API Docs:**
+   * Open your browser and go to **[http://localhost:8000/docs](http://localhost:8000/docs)**.
+   * You will see the interactive Swagger documentation where you can test any API with 1 click!
+3. **Your Files to Work On:**
+   * Open [`backend/app/models/models.py`](file:///C:/Users/Jatin/.gemini/antigravity/scratch/shilp-ai/backend/app/models/models.py):
+     * Review the SQLAlchemy classes: `Artisan`, `Product`, `ProductMedia`, `ProductPricing`, and `B2BEnquiry`.
+     * Add any extra fields you need (e.g., `phone_number`, `state`, `cluster`).
+   * Open [`backend/app/api/`](file:///C:/Users/Jatin/.gemini/antigravity/scratch/shilp-ai/backend/app/api/):
+     * Implement a route to save uploaded camera photos to disk (`uploads/images/`).
+     * Implement a route to query products filtered by craft category (`/api/v1/products?category=textiles`).
+
+---
+
+### 🧠 3. For Kartik Dhiman (AI / GenAI & Vision)
+> **Goal:** Remove backgrounds from craft photos and generate bilingual e-commerce listings from voice notes. You do NOT need to touch the web server to develop your code!
+
+#### How to Start (Step-by-Step):
+1. **Run Your 1-Click Sandbox Test:**
+   * Open terminal and run:
+     ```bash
+     cd backend
+     python test_kartik.py
+     ```
+   * It will instantly test your functions and print the outputs.
+2. **Task A — Build the Image Studio (`backend/app/services/image_studio.py`):**
+   * Open [`backend/app/services/image_studio.py`](file:///C:/Users/Jatin/.gemini/antigravity/scratch/shilp-ai/backend/app/services/image_studio.py).
+   * Write the code to:
+     ```python
+     from rembg import remove
+     from PIL import Image, ImageEnhance
+     import io
+
+     def enhance_craft_image(image_bytes: bytes) -> bytes:
+         raw = Image.open(io.BytesIO(image_bytes)).convert("RGBA")
+         nobg = remove(raw)  # Strips cluttered background
+         
+         # Boost craft color saturation (+15%)
+         nobg = ImageEnhance.Color(nobg).enhance(1.15)
+         
+         # Place on 1080x1080 white canvas
+         canvas = Image.new("RGBA", (1080, 1080), (255, 255, 255, 255))
+         nobg.thumbnail((850, 850), Image.Resampling.LANCZOS)
+         canvas.paste(nobg, ((1080 - nobg.width)//2, (1080 - nobg.height)//2), nobg)
+         
+         buf = io.BytesIO()
+         canvas.convert("RGB").save(buf, format="JPEG", quality=92)
+         return buf.getvalue()
+     ```
+3. **Task B — Voice to Catalog (`backend/app/services/catalog_engine.py`):**
+   * Get a free API key from **[console.groq.com](https://console.groq.com/)**.
+   * Call `llama-3.3-70b-versatile` with JSON response mode to extract: `title_en`, `title_hi`, `material`, `story_en`, and bullet points.
+4. **Verify Your Work:**
+   * Simply run `python test_kartik.py` again to see your live code in action!
+
+---
+
+### 📊 4. For Ishaan Anand (ML / Pricing & Market Linkage)
+> **Goal:** Build the ethical pricing engine that protects artisans from being cheated by middlemen. You do NOT need to touch the web server to develop your code!
+
+#### How to Start (Step-by-Step):
+1. **Run Your 1-Click Sandbox Test:**
+   * Open terminal and run:
+     ```bash
+     cd backend
+     python test_ishaan.py
+     ```
+   * It will calculate a sample Banarasi Silk pricing breakdown.
+2. **Your File to Work On:**
+   * Open [`backend/app/services/pricing_engine.py`](file:///C:/Users/Jatin/.gemini/antigravity/scratch/shilp-ai/backend/app/services/pricing_engine.py).
+3. **Implement the 3 Rules:**
+   * **Rule 1: Guaranteed Artisan Minimum Wage**:
+     $$\text{Labor Wage} = \text{Labor Hours} \times ₹100/\text{hr}$$
+   * **Rule 2: Cost Floor**:
+     $$\text{Cost Floor} = \text{Material Cost} + \text{Labor Wage} + ₹50\text{ (Packaging)}$$
+   * **Rule 3: Category Fair Markups**:
      * Textiles / Handloom: $1.45\times$
-     * Pottery / Ceramics: $1.35\times$
-     * Metalwork / Dokra: $1.50\times$
+     * Pottery / Clay: $1.35\times$
+     * Metal / Dokra: $1.50\times$
      * Woodcraft: $1.40\times$
-3. **Two-Tier Pricing:**
-   * Calculate **Retail Price (B2C)** and **Wholesale Price (B2B)** ($1.18\times$ floor for bulk orders $\ge 25$ units).
-4. **Explainable Pricing Sentence:**
-   * Generate a human-readable justification (e.g., *"Guarantees ₹100/hr skilled wage for 16 hours + ₹350 raw silk + 45% fair craft markup."*).
-5. **B2B Buyer Matching:**
-   * Implement `match_b2b_buyers()` to match craft categories with institutional buyers (Tribes India, FabIndia, Central Cottage Industries Emporium).
+   * **Rule 4: Wholesale B2B Price**:
+     $$\text{Wholesale Price} = \text{Cost Floor} \times 1.18\text{ (for orders } \ge 25\text{ units)}$$
+4. **Implement B2B Buyer Matching (`match_b2b_buyers()`):**
+   * Return matching institutional buyers (e.g., Tribes India, FabIndia, Central Cottage Industries Emporium) based on craft category.
+5. **Verify Your Work:**
+   * Run `python test_ishaan.py` to confirm your formulas output clean, rounded numbers.
 
 ---
 
-### 🎖️ 5. Jatin (DevOps, Integrations & Pitch Lead)
-* **Assigned Files:** [`backend/app/services/export_service.py`](file:///C:/Users/Jatin/.gemini/antigravity/scratch/shilp-ai/backend/app/services/export_service.py), `demo-assets/`
-* **Mission:** External commerce linkages, booth demo kit, and team orchestration.
+### 🎖️ 5. For Jatin (DevOps, Integrations & Pitch Lead)
+> **Goal:** Manage the repository, connect external linkages (ONDC & WhatsApp), and direct the SIH presentation.
 
-#### Step-by-Step Action Plan:
-1. **External Exports (`export_service.py`):**
-   * Maintain the ONDC Beckn Protocol JSON schema.
-   * Generate dynamic UPI payment QR codes (`upi://pay?pa=...`).
-   * Generate printable A4 Mela Standee PDFs using ReportLab.
-2. **Demo Kit & Seed Data:**
-   * Maintain sample physical crafts and offline fallback recordings in `demo-assets/`.
-3. **Repository & Merge Management:**
-   * Review Pull Requests and merge into `main` after smoke tests pass.
-4. **SIH 5-Minute Pitch:**
-   * Direct and rehearse the live physical booth presentation with the team.
+#### What You Own:
+1. **External Exports (`backend/app/services/export_service.py`):**
+   * ONDC Beckn Protocol JSON schema generation.
+   * Dynamic UPI payment QR code generator (`upi://pay?pa=...`).
+   * Printable A4 Mela Standee PDF with QR code using ReportLab.
+2. **PR Merges:**
+   * Review Pull Requests from teammates, run `python backend/tests/test_api.py` to verify, and merge into `main`.
+3. **Physical Demo Kit:**
+   * Keep 3 real craft items on the booth table (Brass lamp, Silk scarf, Clay pot).
 
 ---
 
-## 🔄 The Team Synchronization Workflow
+## 🚀 How We Merge Code (The Conflict-Free Ritual)
 
+When you finish your tasks and your sandbox test passes:
+```bash
+# 1. Save and commit your changes:
+git add .
+git commit -m "feat: completed my assigned module"
+
+# 2. Push your branch to GitHub:
+git push origin <your-branch-name>
+
+# 3. Open a Pull Request on GitHub:
+# Jatin will review and merge it cleanly into main!
 ```
-[ Prakriti & Saira ]  ──> Building UI against Mock API (100% Unblocked)
-[ Kartik Dhiman    ]  ──> Developing Vision & Voice in `image_studio.py` & `catalog_engine.py`
-[ Ishaan Anand     ]  ──> Developing Pricing Math in `pricing_engine.py`
-[ Anikeat          ]  ──> Developing Database & API routing in `models/` & `api/`
-[ Jatin            ]  ──> Managing ONDC export, repo health & pitch assets
-```
 
-### When Ready to Merge:
-1. Ensure your module runs without errors.
-2. Push your branch:
-   ```bash
-   git push origin <your-branch-name>
-   ```
-3. Open a Pull Request into `main`.
-4. Jatin will verify with `python -m backend.tests.test_api` and merge!
-
-Let's build a winning SIH prototype! 🇮🇳
+Let's build a championship prototype! 🇮🇳

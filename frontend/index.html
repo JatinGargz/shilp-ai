@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SHILP AI — Prototype Web Suite</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .phone-frame {
+            width: 380px;
+            height: 740px;
+            border: 12px solid #1f2937;
+            border-radius: 46px;
+            overflow: hidden;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.35);
+        }
+    </style>
+</head>
+<body class="bg-gray-100 min-h-screen flex flex-col font-sans">
+    <header class="bg-stone-900 text-white px-6 py-3 shadow-md flex justify-between items-center sticky top-0 z-50">
+        <div class="flex items-center space-x-3">
+            <span class="text-xl font-black tracking-wide text-amber-500">SHILP AI (शिल्प)</span>
+            <span class="text-xs bg-stone-800 text-stone-300 px-2 py-1 rounded border border-stone-700">SIH PS 26090 | MoSJE</span>
+        </div>
+        <div class="flex bg-stone-800 p-1 rounded-xl border border-stone-700 space-x-1">
+            <button onclick="setView('mobile')" id="btnMobile" class="px-3 py-1.5 text-xs font-bold rounded-lg transition-all text-stone-300 hover:text-white">
+                <i class="fas fa-mobile-alt mr-1"></i> Artisan Mobile (PWA)
+            </button>
+            <button onclick="setView('admin')" id="btnAdmin" class="px-3 py-1.5 text-xs font-bold rounded-lg transition-all text-stone-300 hover:text-white">
+                <i class="fas fa-chart-line mr-1"></i> Ministry Central Dashboard
+            </button>
+            <button onclick="setView('split')" id="btnSplit" class="px-3 py-1.5 text-xs font-bold rounded-lg transition-all bg-amber-600 text-white shadow">
+                <i class="fas fa-columns mr-1"></i> Dual-Screen Live Booth View
+            </button>
+        </div>
+    </header>
+
+    <main class="flex-1 p-6 flex justify-center items-start overflow-auto">
+        <div id="wrapper" class="w-full max-w-7xl flex gap-8 justify-center items-start">
+            <div id="mobileSection" class="flex flex-col items-center">
+                <p class="text-xs font-bold text-gray-500 uppercase tracking-wider mb-2 flex items-center">
+                    <span class="w-2 h-2 rounded-full bg-green-500 inline-block mr-1.5 animate-pulse"></span>
+                    Rural Artisan PWA View (Under 2MB)
+                </p>
+                <div class="phone-frame bg-white flex flex-col justify-between relative">
+                    <div class="bg-gradient-to-r from-orange-700 to-amber-700 text-white p-4 pt-6 rounded-b-2xl shadow">
+                        <div class="flex justify-between items-center">
+                            <div>
+                                <h2 class="text-lg font-black tracking-tight">SHILP AI (शिल्प)</h2>
+                                <p class="text-[10px] text-orange-200">MoSJE Artisan Pocket Manager</p>
+                            </div>
+                            <span class="bg-orange-800/80 text-[10px] px-2 py-0.5 rounded-full border border-orange-500/50">हिंदी / EN</span>
+                        </div>
+                    </div>
+
+                    <div class="p-4 flex-1 overflow-y-auto space-y-4 text-center">
+                        <p class="text-xs font-medium text-gray-600">Boliye aur photo lijiye (Voice + Camera):</p>
+                        
+                        <button onclick="triggerScan()" id="micBtn" class="w-20 h-20 bg-gradient-to-tr from-orange-600 to-amber-500 rounded-full text-white shadow-lg hover:scale-105 active:scale-95 transition-all flex items-center justify-center mx-auto focus:ring-8 focus:ring-orange-200">
+                            <i class="fas fa-microphone text-2xl"></i>
+                        </button>
+                        <p id="micStatus" class="text-[11px] text-gray-400 font-semibold">Tap to record voice & photo</p>
+
+                        <div id="resultCard" class="hidden border border-orange-200 bg-orange-50/70 rounded-xl p-3 text-left space-y-2.5 shadow-sm">
+                            <div class="flex items-center space-x-3">
+                                <img id="resImg" src="https://images.unsplash.com/photo-1610030469983-98e550d6193c?w=400" class="w-16 h-16 rounded-lg object-cover border border-orange-200 shadow-sm" />
+                                <div>
+                                    <span class="bg-green-600 text-white text-[9px] font-bold px-1.5 py-0.5 rounded">4K Studio Enhanced</span>
+                                    <h4 id="resTitle" class="font-bold text-xs text-gray-800 leading-tight mt-1">Handcrafted Banarasi Silk Dupatta</h4>
+                                    <p id="resPrice" class="text-orange-700 font-black text-sm mt-0.5">Rs. 590 <span class="text-[9px] font-normal text-gray-500">(Fair Wage Price)</span></p>
+                                </div>
+                            </div>
+                            <div class="bg-white p-2 rounded-lg border border-orange-100 text-[11px] text-gray-600 italic">
+                                "<span id="resStory">Handwoven by Varanasi weavers preserving heritage.</span>"
+                            </div>
+                            <div class="grid grid-cols-2 gap-2 pt-1">
+                                <button onclick="alert('Generated WhatsApp Catalog Card with direct UPI payment QR!')" class="bg-green-600 text-white font-bold py-1.5 px-2 rounded-lg text-[10px] flex items-center justify-center space-x-1 shadow hover:bg-green-700">
+                                    <i class="fab fa-whatsapp"></i> <span>WhatsApp Card</span>
+                                </button>
+                                <a href="http://localhost:8000/api/v1/products/shilp_101/mela-standee-pdf" target="_blank" class="bg-orange-700 text-white font-bold py-1.5 px-2 rounded-lg text-[10px] flex items-center justify-center space-x-1 shadow hover:bg-orange-800">
+                                    <i class="fas fa-print"></i> <span>Mela Standee</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="p-3 bg-stone-50 border-t flex justify-around text-gray-400 text-xs">
+                        <span class="text-orange-700 font-bold"><i class="fas fa-home"></i> Home</span>
+                        <span><i class="fas fa-box"></i> Catalogs</span>
+                        <span><i class="fas fa-rupee-sign"></i> Sales</span>
+                    </div>
+                </div>
+            </div>
+
+            <div id="adminSection" class="flex-1 bg-white rounded-3xl p-6 shadow-sm border border-gray-200 space-y-6">
+                <div class="flex justify-between items-center border-b pb-4">
+                    <div>
+                        <h3 class="text-lg font-black text-gray-800">MoSJE Central Analytics Portal</h3>
+                        <p class="text-xs text-gray-500">Ministry of Social Justice and Empowerment | Artisan Scheme Monitoring</p>
+                    </div>
+                    <span class="bg-orange-100 text-orange-800 text-xs font-bold px-3 py-1 rounded-full border border-orange-200">PM Vishwakarma Integrated</span>
+                </div>
+
+                <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+                    <div class="bg-stone-50 p-4 rounded-xl border border-stone-200">
+                        <p class="text-[10px] font-bold text-gray-400 uppercase">Artisans Onboarded</p>
+                        <p id="kpiArtisans" class="text-2xl font-black text-gray-800 mt-1">1,420</p>
+                        <p class="text-[10px] text-green-600 font-semibold mt-0.5">↑ 18% this month</p>
+                    </div>
+                    <div class="bg-stone-50 p-4 rounded-xl border border-stone-200">
+                        <p class="text-[10px] font-bold text-gray-400 uppercase">Catalogs Generated</p>
+                        <p id="kpiCatalogs" class="text-2xl font-black text-orange-700 mt-1">5,840</p>
+                        <p class="text-[10px] text-gray-400 mt-0.5">4K Studio Enhanced</p>
+                    </div>
+                    <div class="bg-stone-50 p-4 rounded-xl border border-stone-200">
+                        <p class="text-[10px] font-bold text-gray-400 uppercase">PM Vishwakarma Verified</p>
+                        <p id="kpiVishwakarma" class="text-2xl font-black text-blue-700 mt-1">980</p>
+                        <p class="text-[10px] text-blue-500 mt-0.5">69% coverage</p>
+                    </div>
+                    <div class="bg-stone-50 p-4 rounded-xl border border-stone-200">
+                        <p class="text-[10px] font-bold text-gray-400 uppercase">Direct Sales Generated</p>
+                        <p id="kpiSales" class="text-2xl font-black text-green-700 mt-1">₹ 42.5 L</p>
+                        <p class="text-[10px] text-green-600 mt-0.5">Direct to Artisan UPI</p>
+                    </div>
+                </div>
+
+                <div class="space-y-3">
+                    <div class="flex justify-between items-center">
+                        <h4 class="font-bold text-xs text-gray-700 uppercase tracking-wider">MoSJE State Cluster Registry</h4>
+                        <a href="http://localhost:8000/api/v1/products" target="_blank" class="text-xs text-orange-700 font-semibold hover:underline">View Live Products API →</a>
+                    </div>
+                    <div class="overflow-x-auto rounded-xl border border-gray-100">
+                        <table class="w-full text-left text-xs">
+                            <thead class="bg-gray-50 text-gray-400 uppercase font-bold">
+                                <tr>
+                                    <th class="py-2.5 px-3">Cluster</th>
+                                    <th class="py-2.5 px-3">State</th>
+                                    <th class="py-2.5 px-3">Artisans</th>
+                                    <th class="py-2.5 px-3">ONDC Status</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y text-gray-700">
+                                <tr>
+                                    <td class="py-2.5 px-3 font-semibold">Varanasi Silk Weavers</td>
+                                    <td class="py-2.5 px-3">Uttar Pradesh</td>
+                                    <td class="py-2.5 px-3">420</td>
+                                    <td class="py-2.5 px-3"><span class="bg-green-100 text-green-800 px-2 py-0.5 rounded font-bold">Live on ONDC</span></td>
+                                </tr>
+                                <tr>
+                                    <td class="py-2.5 px-3 font-semibold">Bastar Dokra Metal</td>
+                                    <td class="py-2.5 px-3">Chhattisgarh</td>
+                                    <td class="py-2.5 px-3">280</td>
+                                    <td class="py-2.5 px-3"><span class="bg-green-100 text-green-800 px-2 py-0.5 rounded font-bold">Live on ONDC</span></td>
+                                </tr>
+                                <tr>
+                                    <td class="py-2.5 px-3 font-semibold">Jaipur Blue Pottery</td>
+                                    <td class="py-2.5 px-3">Rajasthan</td>
+                                    <td class="py-2.5 px-3">350</td>
+                                    <td class="py-2.5 px-3"><span class="bg-green-100 text-green-800 px-2 py-0.5 rounded font-bold">Live on ONDC</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        function setView(mode) {
+            const mSec = document.getElementById('mobileSection');
+            const aSec = document.getElementById('adminSection');
+            const btnM = document.getElementById('btnMobile');
+            const btnA = document.getElementById('btnAdmin');
+            const btnS = document.getElementById('btnSplit');
+
+            [btnM, btnA, btnS].forEach(b => {
+                b.className = "px-3 py-1.5 text-xs font-bold rounded-lg transition-all text-stone-300 hover:text-white";
+            });
+
+            if(mode === 'mobile') {
+                mSec.classList.remove('hidden');
+                aSec.classList.add('hidden');
+                btnM.className = "px-3 py-1.5 text-xs font-bold rounded-lg transition-all bg-amber-600 text-white shadow";
+            } else if(mode === 'admin') {
+                mSec.classList.add('hidden');
+                aSec.classList.remove('hidden');
+                btnA.className = "px-3 py-1.5 text-xs font-bold rounded-lg transition-all bg-amber-600 text-white shadow";
+            } else {
+                mSec.classList.remove('hidden');
+                aSec.classList.remove('hidden');
+                btnS.className = "px-3 py-1.5 text-xs font-bold rounded-lg transition-all bg-amber-600 text-white shadow";
+            }
+        }
+
+        async function triggerScan() {
+            document.getElementById('micStatus').innerText = "Processing Voice & Image AI...";
+            try {
+                const res = await fetch("http://localhost:8000/api/v1/media/process-raw", {
+                    method: "POST",
+                    headers: {"Content-Type": "application/x-www-form-urlencoded"},
+                    body: "craft_category=textiles&material_cost=250&labor_hours=16&transcript_hint=Pure Banarasi Silk Dupatta handloom"
+                });
+                const data = await res.json();
+                document.getElementById('resTitle').innerText = data.catalog.title_en;
+                document.getElementById('resPrice').innerText = "Rs. " + data.pricing.recommended_retail_price;
+                document.getElementById('resStory').innerText = data.catalog.story_en;
+                document.getElementById('resultCard').classList.remove('hidden');
+                document.getElementById('micStatus').innerText = "Scan Complete! Catalog Published.";
+                document.getElementById('kpiCatalogs').innerText = "5,841";
+            } catch(e) {
+                document.getElementById('micStatus').innerText = "Simulated Mode (Ensure backend is running)";
+                document.getElementById('resultCard').classList.remove('hidden');
+            }
+        }
+    </script>
+</body>
+</html>
