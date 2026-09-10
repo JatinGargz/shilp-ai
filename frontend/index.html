@@ -265,6 +265,25 @@
                             </span>
                         </div>
 
+                        <!-- 🔥 TRENDING TOPICS PREVIEW BANNER -->
+                        <div onclick="switchPhoneTab('trends')" class="cursor-pointer bg-gradient-to-r from-stone-900 via-amber-950 to-stone-900 text-white border border-amber-500/40 rounded-2xl p-2.5 flex items-center justify-between shadow-md hover:border-amber-400 transition group text-left">
+                            <div class="flex items-center space-x-2.5">
+                                <div class="w-8 h-8 rounded-xl bg-gradient-to-tr from-clay-600 to-amber-500 flex items-center justify-center text-white text-xs shadow-sm flex-shrink-0 group-hover:scale-105 transition">
+                                    <i class="fas fa-fire text-amber-200 animate-pulse"></i>
+                                </div>
+                                <div>
+                                    <div class="flex items-center space-x-1.5">
+                                        <span class="text-[10px] font-black text-amber-300 uppercase tracking-wide">शिल्प रुझान (Trending Now)</span>
+                                        <span class="text-[8px] font-bold bg-red-600 text-white px-1.5 py-0.5 rounded-full">+88% Surge</span>
+                                    </div>
+                                    <p class="text-[8.5px] text-stone-300 mt-0.5 truncate max-w-[210px]">कमल-मोर ज़री और इंडिगो रंग की सबसे ज्यादा मांग</p>
+                                </div>
+                            </div>
+                            <div class="text-amber-400 text-xs pl-1">
+                                <i class="fas fa-chevron-right group-hover:translate-x-1 transition"></i>
+                            </div>
+                        </div>
+
                         <!-- 🌟 1-TAP CRAFT PRESETS (COMFY & EASY TO USE) -->
                         <div class="space-y-1.5 text-left">
                             <div class="flex justify-between items-center">
@@ -509,6 +528,98 @@
                     </div>
 
                     <!-- ======================================================= -->
+                    <!-- TAB: "शिल्प रुझान" (CRAFT TRENDRADAR & DEMAND INSIGHTS) -->
+                    <!-- ======================================================= -->
+                    <div id="tabContentTrends" class="hidden flex-1 overflow-y-auto p-4 space-y-3 hide-scrollbar bg-[#fdfbf7]">
+                        <!-- Banner Header -->
+                        <div class="bg-gradient-to-r from-clay-900 via-amber-950 to-stone-900 text-white p-3.5 rounded-2xl text-left space-y-1 shadow-md relative overflow-hidden">
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center space-x-2">
+                                    <div class="w-7 h-7 rounded-lg bg-amber-500/20 border border-amber-400/30 flex items-center justify-center text-amber-400 text-xs">
+                                        <i class="fas fa-arrow-trend-up"></i>
+                                    </div>
+                                    <h4 class="text-xs font-black text-amber-300">शिल्प रुझान (Craft TrendRadar)</h4>
+                                </div>
+                                <span id="trendSurgeBadge" class="text-[8.5px] bg-red-600/90 text-white font-extrabold px-2 py-0.5 rounded-full shadow animate-pulse">
+                                    +88% Festive Surge
+                                </span>
+                            </div>
+                            <p class="text-[9px] text-stone-300">
+                                अमेज़न, Etsy और ONDC पर इस समय किस डिज़ाइन और रंग की सबसे ज़्यादा मांग है—ताकि कोई माल बिना बिके न रहे।
+                            </p>
+                        </div>
+
+                        <!-- Craft Selector Pills -->
+                        <div class="flex space-x-1.5 overflow-x-auto pb-1 hide-scrollbar">
+                            <button onclick="loadCraftTrends('textiles')" id="pillTrendTextiles" class="px-2.5 py-1 rounded-xl text-[10px] font-bold bg-clay-600 text-white shadow-sm flex-shrink-0 transition">
+                                🧵 वस्त्र (Textiles)
+                            </button>
+                            <button onclick="loadCraftTrends('pottery')" id="pillTrendPottery" class="px-2.5 py-1 rounded-xl text-[10px] font-bold bg-white text-stone-700 border border-stone-200 hover:bg-stone-50 flex-shrink-0 transition">
+                                🏺 मिट्टी (Pottery)
+                            </button>
+                            <button onclick="loadCraftTrends('metalwork')" id="pillTrendMetalwork" class="px-2.5 py-1 rounded-xl text-[10px] font-bold bg-white text-stone-700 border border-stone-200 hover:bg-stone-50 flex-shrink-0 transition">
+                                🪙 पीतल (Metalware)
+                            </button>
+                            <button onclick="loadCraftTrends('woodwork')" id="pillTrendWoodwork" class="px-2.5 py-1 rounded-xl text-[10px] font-bold bg-white text-stone-700 border border-stone-200 hover:bg-stone-50 flex-shrink-0 transition">
+                                🪵 काष्ठ (Woodwork)
+                            </button>
+                        </div>
+
+                        <!-- Actionable AI Advice Card -->
+                        <div class="bg-amber-50/90 border border-amber-200 rounded-2xl p-3 text-left space-y-2 shadow-sm">
+                            <div class="flex justify-between items-center">
+                                <span class="text-[9px] font-extrabold uppercase tracking-wider text-amber-900 flex items-center">
+                                    <i class="fas fa-wand-magic-sparkles text-amber-600 mr-1"></i> AI कारीगर सुझाव (Market Advisory)
+                                </span>
+                                <button onclick="playTrendAudioVoice()" id="btnPlayTrendAudio" class="text-[9px] bg-stone-900 hover:bg-stone-800 text-amber-300 px-2 py-0.5 rounded-lg font-bold flex items-center space-x-1 shadow-sm transition">
+                                    <i class="fas fa-volume-high text-[10px]"></i>
+                                    <span>बोलकर सुनो</span>
+                                </button>
+                            </div>
+                            <p id="trendAdviceText" class="text-xs font-semibold text-stone-900 leading-snug">
+                                इस महीने कॉटन और सिल्क दुपट्टे में गोल्ड ज़री बॉर्डर और नैचुरल इंडिगो रंग की सबसे ज्यादा मांग है। अपने उत्पाद का दाम ₹1,600 से ₹2,400 के बीच रखें।
+                            </p>
+                            <div class="flex items-center justify-between pt-1 border-t border-amber-200/60 text-[9px]">
+                                <span class="text-stone-600">तेज़ बिक्री दाम: <strong id="trendPriceSweetSpot" class="text-emerald-700 font-extrabold">₹ 1,500 – ₹ 2,800</strong></span>
+                                <span id="trendSeasonFocus" class="text-stone-500 font-medium">Navratri & Diwali Season</span>
+                            </div>
+                        </div>
+
+                        <!-- Trending Motifs & Designs -->
+                        <div class="bg-white border border-stone-200 rounded-2xl p-3 text-left space-y-2 shadow-sm">
+                            <div class="flex justify-between items-center">
+                                <h5 class="text-xs font-black text-stone-900 flex items-center">
+                                    <i class="fas fa-fire text-red-500 mr-1.5"></i> टॉप ट्रेंडिंग डिज़ाइन (Hot Motifs)
+                                </h5>
+                                <span class="text-[8px] font-bold text-stone-400">Search Velocity</span>
+                            </div>
+                            <div id="trendMotifsContainer" class="space-y-1.5">
+                                <!-- Populated dynamically -->
+                            </div>
+                        </div>
+
+                        <!-- Trending Color Palette -->
+                        <div class="bg-white border border-stone-200 rounded-2xl p-3 text-left space-y-2 shadow-sm">
+                            <h5 class="text-xs font-black text-stone-900 flex items-center">
+                                <i class="fas fa-palette text-clay-600 mr-1.5"></i> ट्रेंडिंग रंग (Color Palette)
+                            </h5>
+                            <div id="trendColorsContainer" class="grid grid-cols-4 gap-2">
+                                <!-- Populated dynamically -->
+                            </div>
+                        </div>
+
+                        <!-- Marketplace Search Signals -->
+                        <div class="bg-stone-900 text-white rounded-2xl p-3 text-left space-y-2 shadow-md">
+                            <h5 class="text-xs font-black text-amber-300 flex items-center">
+                                <i class="fas fa-bolt text-amber-400 mr-1.5"></i> लाइव मार्केट डिमांड सिग्नल्स
+                            </h5>
+                            <div id="trendSignalsContainer" class="space-y-1.5 text-[9.5px]">
+                                <!-- Populated dynamically -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ======================================================= -->
                     <!-- TAB 3: "सौदा रक्षक" (BARGAINING SHIELD)                 -->
                     <!-- ======================================================= -->
                     <div id="tabContentBargain" class="hidden flex-1 overflow-y-auto p-4 space-y-3.5 hide-scrollbar bg-[#fdfbf7]">
@@ -653,6 +764,10 @@
                         <button onclick="switchPhoneTab('catalogs')" id="tabNavCatalogs" class="flex flex-col items-center hover:text-clay-600 transition">
                             <i class="fas fa-boxes-stacked text-base mb-0.5"></i>
                             <span>Listings</span>
+                        </button>
+                        <button onclick="switchPhoneTab('trends')" id="tabNavTrends" class="flex flex-col items-center hover:text-clay-600 transition">
+                            <i class="fas fa-arrow-trend-up text-base mb-0.5 text-amber-500"></i>
+                            <span>रुझान</span>
                         </button>
                         <button onclick="switchPhoneTab('bargain')" id="tabNavBargain" class="flex flex-col items-center hover:text-clay-600 transition">
                             <i class="fas fa-shield-halved text-base mb-0.5"></i>
@@ -991,7 +1106,7 @@
 
         // 2. PHONE TAB SWITCHER (Comfy, Instant, Fluid)
         function switchPhoneTab(tabName) {
-            const tabs = ['home', 'catalogs', 'bargain', 'shilpi', 'orders'];
+            const tabs = ['home', 'catalogs', 'trends', 'bargain', 'shilpi', 'orders'];
             tabs.forEach(t => {
                 const pane = document.getElementById('tabContent' + t.charAt(0).toUpperCase() + t.slice(1));
                 const nav = document.getElementById('tabNav' + t.charAt(0).toUpperCase() + t.slice(1));
@@ -1004,6 +1119,7 @@
                 }
             });
             if (tabName === 'catalogs') loadArtisanCatalogs();
+            if (tabName === 'trends') loadCraftTrends(activeCategory || 'textiles');
         }
 
         // 3. MASTER DESKTOP VIEW SWITCHER
@@ -1535,6 +1651,132 @@
 
         function closeSpApiModal() {
             document.getElementById('spApiModal').classList.add('hidden');
+        }
+
+        // 15. CRAFT TRENDS & DEMAND INSIGHTS ("शिल्प रुझान")
+        let currentTrendCategory = 'textiles';
+        let currentTrendAudioUrl = '';
+
+        async function loadCraftTrends(category) {
+            currentTrendCategory = category || 'textiles';
+            const categories = ['textiles', 'pottery', 'metalwork', 'woodwork'];
+            categories.forEach(c => {
+                const btn = document.getElementById('pillTrend' + c.charAt(0).toUpperCase() + c.slice(1));
+                if (btn) {
+                    if (c === currentTrendCategory) {
+                        btn.className = "px-2.5 py-1 rounded-xl text-[10px] font-bold bg-clay-600 text-white shadow-sm flex-shrink-0 transition";
+                    } else {
+                        btn.className = "px-2.5 py-1 rounded-xl text-[10px] font-bold bg-white text-stone-700 border border-stone-200 hover:bg-stone-50 flex-shrink-0 transition";
+                    }
+                }
+            });
+
+            try {
+                const res = await fetch(API_BASE + "/api/v1/trends/" + currentTrendCategory);
+                const data = await res.json();
+
+                const badge = document.getElementById('trendSurgeBadge');
+                if (badge) badge.innerText = data.surge_badge;
+                const adv = document.getElementById('trendAdviceText');
+                if (adv) adv.innerText = data.actionable_advice_hi;
+                const priceSpot = document.getElementById('trendPriceSweetSpot');
+                if (priceSpot) priceSpot.innerText = data.price_sweet_spot;
+                const sFocus = document.getElementById('trendSeasonFocus');
+                if (sFocus) sFocus.innerText = data.primary_season;
+
+                // Render Motifs
+                const motifsContainer = document.getElementById('trendMotifsContainer');
+                if (motifsContainer && data.trending_motifs) {
+                    motifsContainer.innerHTML = data.trending_motifs.map(m => `
+                        <div class="p-2 bg-stone-50 rounded-xl border border-stone-200 flex justify-between items-center text-left">
+                            <div class="pr-2">
+                                <p class="text-[10px] font-bold text-stone-900">${m.title}</p>
+                                <p class="text-[8.5px] text-stone-500">${m.insight}</p>
+                            </div>
+                            <span class="text-[9px] font-black text-emerald-700 bg-emerald-50 border border-emerald-200 px-1.5 py-0.5 rounded-full flex-shrink-0">
+                                ${m.growth}
+                            </span>
+                        </div>
+                    `).join('');
+                }
+
+                // Render Colors
+                const colorsContainer = document.getElementById('trendColorsContainer');
+                if (colorsContainer && data.trending_colors) {
+                    colorsContainer.innerHTML = data.trending_colors.map(c => `
+                        <div class="flex flex-col items-center text-center">
+                            <div class="w-8 h-8 rounded-xl shadow-inner border border-stone-200 mb-1" style="background-color: ${c.hex}"></div>
+                            <span class="text-[8px] font-bold text-stone-700 leading-tight">${c.name}</span>
+                            <span class="text-[7.5px] text-stone-400 font-mono">${c.hex}</span>
+                        </div>
+                    `).join('');
+                }
+
+                // Render Signals
+                const sigsContainer = document.getElementById('trendSignalsContainer');
+                if (sigsContainer && data.channel_signals) {
+                    sigsContainer.innerHTML = `
+                        <div class="flex items-center space-x-1.5 text-stone-200">
+                            <i class="fab fa-amazon text-amazon-orange text-xs w-4"></i>
+                            <span>${data.channel_signals.amazon}</span>
+                        </div>
+                        <div class="flex items-center space-x-1.5 text-stone-200">
+                            <i class="fab fa-etsy text-orange-400 text-xs w-4"></i>
+                            <span>${data.channel_signals.etsy}</span>
+                        </div>
+                        <div class="flex items-center space-x-1.5 text-stone-200">
+                            <i class="fas fa-network-wired text-cyan-400 text-xs w-4"></i>
+                            <span>${data.channel_signals.ondc}</span>
+                        </div>
+                    `;
+                }
+
+                // Prefetch audio
+                fetch(API_BASE + "/api/v1/trends/" + currentTrendCategory + "/audio")
+                    .then(r => r.json())
+                    .then(a => {
+                        currentTrendAudioUrl = a.audio_url ? (API_BASE + a.audio_url) : '';
+                    })
+                    .catch(e => {});
+
+            } catch (err) {
+                console.error("Failed to load craft trends:", err);
+            }
+        }
+
+        function playTrendAudioVoice() {
+            const btn = document.getElementById('btnPlayTrendAudio');
+            if (btn) btn.innerHTML = `<i class="fas fa-spinner fa-spin text-[10px]"></i> <span>लोड हो रहा...</span>`;
+            if (currentTrendAudioUrl) {
+                const aud = new Audio(currentTrendAudioUrl);
+                aud.play().then(() => {
+                    if (btn) btn.innerHTML = `<i class="fas fa-volume-high text-[10px] text-emerald-400"></i> <span>सुन रहे हैं...</span>`;
+                    aud.onended = () => {
+                        if (btn) btn.innerHTML = `<i class="fas fa-volume-high text-[10px]"></i> <span>बोलकर सुनो</span>`;
+                    };
+                }).catch(() => {
+                    if (btn) btn.innerHTML = `<i class="fas fa-volume-high text-[10px]"></i> <span>बोलकर सुनो</span>`;
+                });
+            } else {
+                fetch(API_BASE + "/api/v1/trends/" + currentTrendCategory + "/audio")
+                    .then(r => r.json())
+                    .then(a => {
+                        if (a.audio_url) {
+                            currentTrendAudioUrl = API_BASE + a.audio_url;
+                            const aud = new Audio(currentTrendAudioUrl);
+                            aud.play();
+                            if (btn) btn.innerHTML = `<i class="fas fa-volume-high text-[10px] text-emerald-400"></i> <span>सुन रहे हैं...</span>`;
+                            aud.onended = () => {
+                                if (btn) btn.innerHTML = `<i class="fas fa-volume-high text-[10px]"></i> <span>बोलकर सुनो</span>`;
+                            };
+                        } else {
+                            if (btn) btn.innerHTML = `<i class="fas fa-volume-high text-[10px]"></i> <span>बोलकर सुनो</span>`;
+                        }
+                    })
+                    .catch(() => {
+                        if (btn) btn.innerHTML = `<i class="fas fa-volume-high text-[10px]"></i> <span>बोलकर सुनो</span>`;
+                    });
+            }
         }
 
         // Initialize on load

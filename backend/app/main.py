@@ -14,6 +14,7 @@ from app.services.image_studio import enhance_craft_image
 from app.services.catalog_engine import generate_catalog_from_voice, generate_hindi_tts_audio, ask_shilpi_assistant
 from app.services.pricing_engine import calculate_fair_pricing, match_b2b_buyers, evaluate_bargaining_offer
 from app.services.export_service import generate_upi_qr_bytes, generate_ondc_beckn_json, generate_mela_standee_pdf, publish_to_all_channels
+from app.services.trends_engine import get_craft_trend_insights, get_all_available_categories
 
 
 Base.metadata.create_all(bind=engine)
@@ -284,6 +285,29 @@ def get_product_channels(product_id: str, db: Session = Depends(get_db)):
     }
     image_url = prod.media.enhanced_studio_url if prod and prod.media else "https://images.unsplash.com/photo-1610030469983-98e550d6193c?w=800"
     return publish_to_all_channels(product_id, catalog, pricing, image_url)
+
+@app.get("/api/v1/trends/categories")
+def get_trends_categories():
+    return {"categories": get_all_available_categories()}
+
+@app.get("/api/v1/trends/{craft_category}")
+def get_trends_for_category(craft_category: str):
+    insights = get_craft_trend_insights(craft_category)
+    return insights
+
+@app.get("/api/v1/trends/{craft_category}/audio")
+def get_trend_audio(craft_category: str):
+    from gtts import gTTS
+    insights = get_craft_trend_insights(craft_category)
+    text_to_speak = f"{insights['craft_name_hi']} में इस समय {insights['surge_badge']} है। {insights['actionable_advice_hi']}"
+    filename = f"trend_{craft_category}_{uuid.uuid4().hex[:6]}.mp3"
+    filepath = os.path.join(STATIC_DIR, "audio", filename)
+    try:
+        tts = gTTS(text=text_to_speak, lang="hi", slow=False)
+        tts.save(filepath)
+        return {"audio_url": f"/static/audio/{filename}", "text": text_to_speak}
+    except Exception:
+        return {"audio_url": "", "text": text_to_speak}
 
 
 
