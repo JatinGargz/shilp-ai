@@ -266,57 +266,244 @@
     <!-- ======================================================================= -->
     <section id="page-landing" class="page-container max-w-7xl mx-auto w-full px-4 sm:px-6 py-6 space-y-10">
         
-        <!-- Hero Banner: Deep Maroon Textured Background -->
-        <div class="rounded-3xl overflow-hidden shadow-elevated border border-stone-900/40 relative text-white"
-             style="background: radial-gradient(circle at top right, #7A2424 0%, #5C1A1A 50%, #380C0C 100%);">
+        
+        <!-- Hero Banner: Deep Maroon Textured Canvas with Authentic Kalamkari Art (कला) -->
+        <div class="rounded-3xl overflow-hidden shadow-elevated border border-amber-950/40 relative text-white min-h-[520px] flex items-center"
+             style="background: radial-gradient(circle at 60% 40%, #7B2124 0%, #5C1A1A 50%, #240707 100%);">
             
-            <!-- Kalamkari subtle background motif -->
-            <div class="absolute inset-0 opacity-10 pointer-events-none" 
-                 style="background-image: url('data:image/svg+xml;utf8,<svg width="40" height="40" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"><path d="M20 0L40 20L20 40L0 20Z" fill="none" stroke="%23F8F1E7" stroke-width="1"/><circle cx="20" cy="20" r="8" fill="none" stroke="%23F8F1E7" stroke-width="0.75"/></svg>');">
-            </div>
+            
+        <!-- ======================================================================= -->
+        <!-- AUTHENTIC INDIAN KALAMKARI TREE OF LIFE & FLORAL ART (कला)              -->
+        <!-- ======================================================================= -->
+        <svg class="absolute inset-0 w-full h-full pointer-events-none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" viewBox="0 0 1440 580">
+          <defs>
+            <linearGradient id="goldArtGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#FDE68A" stop-opacity="0.65"/>
+              <stop offset="50%" stop-color="#E8A35C" stop-opacity="0.5"/>
+              <stop offset="100%" stop-color="#C87D32" stop-opacity="0.35"/>
+            </linearGradient>
 
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 p-8 sm:p-12 items-center relative z-10">
+            <radialGradient id="redVignette" cx="50%" cy="40%" r="65%">
+              <stop offset="0%" stop-color="#7B2124" stop-opacity="0.95"/>
+              <stop offset="55%" stop-color="#5C1A1A" stop-opacity="0.98"/>
+              <stop offset="100%" stop-color="#240707" stop-opacity="1.0"/>
+            </radialGradient>
+
+            <!-- Lotus Border Frieze -->
+            <pattern id="lotusFrieze" width="60" height="22" patternUnits="userSpaceOnUse">
+              <path d="M30 18 C20 13 15 4 30 0 C45 4 40 13 30 18 Z" fill="none" stroke="#E8A35C" stroke-width="1" stroke-opacity="0.45"/>
+              <path d="M30 16 C16 12 6 8 10 2 C18 6 25 11 30 16 Z" fill="none" stroke="#E8A35C" stroke-width="0.8" stroke-opacity="0.35"/>
+              <path d="M30 16 C44 12 54 8 50 2 C42 6 35 11 30 16 Z" fill="none" stroke="#E8A35C" stroke-width="0.8" stroke-opacity="0.35"/>
+              <circle cx="30" cy="20" r="1.5" fill="#FDE68A" fill-opacity="0.6"/>
+            </pattern>
+
+            <!-- Traditional Indian Jaali Texture -->
+            <pattern id="jaaliGrid" width="44" height="44" patternUnits="userSpaceOnUse">
+              <path d="M22 0 L44 22 L22 44 L0 22 Z" fill="none" stroke="#FDE68A" stroke-width="0.75" stroke-opacity="0.07"/>
+              <circle cx="22" cy="22" r="7" fill="none" stroke="#E8A35C" stroke-width="0.6" stroke-opacity="0.07"/>
+              <circle cx="22" cy="22" r="1.5" fill="#FDE68A" fill-opacity="0.12"/>
+            </pattern>
+          </defs>
+
+          <!-- 1. Rich Organic Textured Canvas -->
+          <rect width="1440" height="580" fill="url(#redVignette)"/>
+          <rect width="1440" height="580" fill="url(#jaaliGrid)"/>
+
+          <!-- 2. Top & Bottom Ornamental Borders -->
+          <rect x="0" y="0" width="1440" height="22" fill="url(#lotusFrieze)"/>
+          <line x1="0" y1="22" x2="1440" y2="22" stroke="#E8A35C" stroke-width="1" stroke-opacity="0.35"/>
+          <rect x="0" y="558" width="1440" height="22" fill="url(#lotusFrieze)" transform="rotate(180 720 569)"/>
+          <line x1="0" y1="558" x2="1440" y2="558" stroke="#E8A35C" stroke-width="1" stroke-opacity="0.35"/>
+
+          <!-- 3. Corner Mandalas (Top-Left & Bottom-Left) -->
+          <g stroke="url(#goldArtGrad)" fill="none">
+            <path d="M0 0 Q200 20 220 220" stroke-width="1.5"/>
+            <path d="M0 0 Q170 15 190 190" stroke-width="1" stroke-dasharray="4 4"/>
+            <circle cx="110" cy="110" r="45" stroke-width="1" stroke-opacity="0.3"/>
+            <circle cx="110" cy="110" r="28" stroke-width="0.8" stroke-opacity="0.4"/>
+            <circle cx="110" cy="110" r="4" fill="#FDE68A" fill-opacity="0.4"/>
+
+            <path d="M0 580 Q200 560 220 360" stroke-width="1.5"/>
+            <path d="M0 580 Q170 565 190 390" stroke-width="1" stroke-dasharray="4 4"/>
+          </g>
+
+          <!-- 4. MASTER KALAMKARI TREE OF LIFE (Center & Behind Headline: Exact Art from Photo) -->
+          <g transform="translate(580, 20) scale(0.92)" stroke="url(#goldArtGrad)" fill="none">
+            
+            <!-- Sacred Kalash Urn Pedestal -->
+            <path d="M160 560 C160 520 180 500 200 500 C220 500 240 520 240 560 Z" stroke-width="2.5" fill="#5C1A1A" fill-opacity="0.45"/>
+            <ellipse cx="200" cy="560" rx="46" ry="9" stroke-width="2"/>
+            <path d="M170 535 Q200 545 230 535" stroke-width="1.5"/>
+            <circle cx="200" cy="515" r="5" fill="#FDE68A" fill-opacity="0.7"/>
+
+            <!-- Central Sinuous Trunk -->
+            <path d="M200 500 L200 170" stroke-width="3" stroke-linecap="round"/>
+            <path d="M196 500 L196 210" stroke-width="1" stroke-dasharray="4 4" stroke-opacity="0.5"/>
+
+            <!-- Lower Branches & Paisley (Kalka) Foliage -->
+            <path d="M200 460 C130 450 80 410 50 360 C35 330 45 300 70 305 C100 310 130 360 195 405" stroke-width="2.2" stroke-linecap="round"/>
+            <path d="M200 460 C270 450 320 410 350 360 C365 330 355 300 330 305 C300 310 270 360 205 405" stroke-width="2.2" stroke-linecap="round"/>
+            
+            <g transform="translate(45, 310) rotate(-40)">
+              <path d="M0 0 C-20 -30 -30 -60 0 -80 C30 -60 20 -30 0 0 Z" stroke-width="1.8" fill="#7A1C1C" fill-opacity="0.4"/>
+              <circle cx="0" cy="-40" r="3" fill="#FDE68A" fill-opacity="0.6"/>
+            </g>
+            <g transform="translate(355, 310) rotate(40)">
+              <path d="M0 0 C-20 -30 -30 -60 0 -80 C30 -60 20 -30 0 0 Z" stroke-width="1.8" fill="#7A1C1C" fill-opacity="0.4"/>
+              <circle cx="0" cy="-40" r="3" fill="#FDE68A" fill-opacity="0.6"/>
+            </g>
+
+            <!-- Mid Tier Branches & Blooming Lotus Buds -->
+            <path d="M200 350 C120 340 80 280 70 210 C65 180 85 165 110 180 C135 200 155 250 195 295" stroke-width="2.2" stroke-linecap="round"/>
+            <path d="M200 350 C280 340 320 280 330 210 C335 180 315 165 290 180 C265 200 245 250 205 295" stroke-width="2.2" stroke-linecap="round"/>
+            
+            <g transform="translate(75, 175) rotate(-35)">
+              <path d="M0 0 C-20 -25 -15 -55 0 -70 C15 -55 20 -25 0 0 Z" stroke-width="2" fill="#5C1A1A" fill-opacity="0.4"/>
+              <path d="M0 0 C-35 -20 -45 -40 -30 -60 C-15 -50 -5 -30 0 0 Z" stroke-width="1.5"/>
+              <path d="M0 0 C35 -20 45 -40 30 -60 C15 -50 5 -30 0 0 Z" stroke-width="1.5"/>
+              <circle cx="0" cy="-35" r="4" fill="#FDE68A" fill-opacity="0.7"/>
+            </g>
+            <g transform="translate(325, 175) rotate(35)">
+              <path d="M0 0 C-20 -25 -15 -55 0 -70 C15 -55 20 -25 0 0 Z" stroke-width="2" fill="#5C1A1A" fill-opacity="0.4"/>
+              <path d="M0 0 C-35 -20 -45 -40 -30 -60 C-15 -50 -5 -30 0 0 Z" stroke-width="1.5"/>
+              <path d="M0 0 C35 -20 45 -40 30 -60 C15 -50 5 -30 0 0 Z" stroke-width="1.5"/>
+              <circle cx="0" cy="-35" r="4" fill="#FDE68A" fill-opacity="0.7"/>
+            </g>
+
+            <!-- Upper Graceful Tendrils -->
+            <path d="M200 240 C150 220 120 170 130 120 C135 95 160 95 168 120 C175 150 185 170 195 190" stroke-width="2" stroke-linecap="round"/>
+            <path d="M200 240 C250 220 280 170 270 120 C265 95 240 95 232 120 C225 150 215 170 205 190" stroke-width="2" stroke-linecap="round"/>
+
+            <!-- THE SACRED CROWNING LOTUS (KAMAL) -->
+            <g transform="translate(200, 90)">
+              <path d="M0 40 C-35 -15 -30 -85 0 -125 C30 -85 35 -15 0 40 Z" stroke-width="3" fill="#5C1A1A" fill-opacity="0.7"/>
+              <path d="M0 35 L0 -105" stroke-width="1.5" stroke-dasharray="4 4"/>
+              <path d="M-8 35 C-50 10 -65 -45 -42 -95 C-20 -70 -8 -25 -8 35 Z" stroke-width="2.2" fill="#7A1C1C" fill-opacity="0.45"/>
+              <path d="M8 35 C50 10 65 -45 42 -95 C20 -70 8 -25 8 35 Z" stroke-width="2.2" fill="#7A1C1C" fill-opacity="0.45"/>
+              <path d="M-15 30 C-80 20 -105 -20 -90 -65 C-60 -50 -30 -10 -15 30 Z" stroke-width="1.8"/>
+              <path d="M15 30 C80 20 105 -20 90 -65 C60 -50 30 -10 15 30 Z" stroke-width="1.8"/>
+
+              <circle cx="0" cy="-40" r="8" fill="#FDE68A" fill-opacity="0.8" stroke="#E8A35C" stroke-width="2"/>
+              <circle cx="-20" cy="-35" r="4" fill="#FDE68A" fill-opacity="0.6"/>
+              <circle cx="20" cy="-35" r="4" fill="#FDE68A" fill-opacity="0.6"/>
+              <circle cx="0" cy="-75" r="4" fill="#FDE68A" fill-opacity="0.7"/>
+              <circle cx="0" cy="-135" r="5" fill="#FDE68A" fill-opacity="0.9" stroke="#E8A35C" stroke-width="1.5"/>
+            </g>
+
+            <!-- Traditional Stippling Dots -->
+            <g fill="#FDE68A" fill-opacity="0.6">
+              <circle cx="200" cy="430" r="2.5"/><circle cx="200" cy="405" r="3"/><circle cx="200" cy="380" r="2.5"/><circle cx="200" cy="330" r="3"/>
+              <circle cx="150" cy="410" r="2.5"/><circle cx="250" cy="410" r="2.5"/>
+              <circle cx="120" cy="330" r="2"/><circle cx="280" cy="330" r="2"/>
+            </g>
+          </g>
+
+          <!-- 5. Right Side Floral Branches -->
+          <g transform="translate(1330, 110) scale(0.75)" stroke="url(#goldArtGrad)" fill="none">
+            <path d="M0 450 C-40 380 -80 300 -60 200 C-50 140 -20 100 0 50" stroke-width="2.5" stroke-linecap="round"/>
+            <path d="M-60 200 C-110 180 -140 130 -120 80 C-100 50 -70 80 -60 120" stroke-width="1.8"/>
+            <g transform="translate(-120, 75) rotate(-30)">
+              <path d="M0 0 C-15 -20 -10 -40 0 -50 C10 -40 15 -20 0 0 Z" stroke-width="1.5" fill="#5C1A1A" fill-opacity="0.4"/>
+              <circle cx="0" cy="-25" r="3" fill="#FDE68A" fill-opacity="0.7"/>
+            </g>
+          </g>
+        </svg>
+
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 p-8 sm:p-12 items-center relative z-10 w-full">
                 <!-- Left Content -->
-                <div class="lg:col-span-7 space-y-5">
-                    <div class="inline-flex items-center space-x-2 bg-black/25 backdrop-blur-sm border border-white/20 px-3.5 py-1 rounded-full text-xs text-amber-200">
-                        <span class="w-2 h-2 rounded-full bg-amber-400"></span>
-                        <span>Empowering Traditional Indian Artisans</span>
+                <div class="lg:col-span-6 space-y-5">
+                    <div class="inline-flex items-center space-x-2 bg-black/35 backdrop-blur-md border border-amber-300/30 px-3.5 py-1 rounded-full text-xs text-amber-200 shadow-sm">
+                        <span class="w-2 h-2 rounded-full bg-amber-400 animate-pulse"></span>
+                        <span class="font-semibold">MoSJE &bull; PM Vishwakarma Certified Artisan Platform</span>
                     </div>
 
-                    <h1 class="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight text-white tracking-tight">
+                    <h1 class="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight text-white tracking-tight drop-shadow-md">
                         Your Craft.<br/>
                         Your Story.<br/>
                         <span class="text-amber-200">A Bigger Tomorrow.</span>
                     </h1>
 
-                    <p class="text-sm sm:text-base text-stone-200 font-sans max-w-lg leading-relaxed">
-                        An AI-powered marketplace for India's artisans to showcase, sell and grow. From village workshops directly to nationwide buyers and global exports.
+                    <p class="text-sm sm:text-base text-stone-200 font-sans max-w-lg leading-relaxed drop-shadow-sm">
+                        KalaKart is an AI-powered marketplace for India's artisans to showcase, sell and grow. From village cluster workshops directly to nationwide patrons and global export markets.
                     </p>
 
                     <div class="flex flex-wrap gap-4 pt-2">
-                        <button onclick="switchPage('add-product')" class="bg-white text-kk-primary hover:bg-amber-100 font-bold text-sm px-7 py-3 rounded-full shadow-lg transition">
+                        <button onclick="switchPage('add-product')" class="bg-gradient-to-r from-amber-600 to-amber-700 hover:from-amber-700 hover:to-amber-800 text-white font-bold text-sm px-7 py-3 rounded-full shadow-lg transition transform hover:-translate-y-0.5">
                             Start Selling &rarr;
                         </button>
-                        <button onclick="switchPage('marketplace')" class="bg-transparent hover:bg-white/10 text-white border border-white/40 text-sm px-7 py-3 rounded-full backdrop-blur-sm transition">
+                        <button onclick="switchPage('marketplace')" class="bg-black/25 hover:bg-white/15 text-white border border-white/40 text-sm px-7 py-3 rounded-full backdrop-blur-md transition">
                             Explore Crafts
                         </button>
                     </div>
                 </div>
 
-                <!-- Right Hero Imagery: Staged Artisanal Brass, Diya & Handlooms -->
-                <div class="lg:col-span-5 relative">
-                    <div class="relative rounded-2xl overflow-hidden shadow-2xl border-2 border-white/20">
-                        <img src="https://images.unsplash.com/photo-1606293926075-69a00dbfde81?w=800&auto=format&fit=crop" 
-                             alt="Traditional Indian Crafts" class="w-full h-80 object-cover"/>
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
-                        <div class="absolute bottom-4 left-4 right-4 text-white">
-                            <span class="text-xs bg-black/40 backdrop-blur-md px-2.5 py-1 rounded-full border border-white/20 font-medium">Authentic GI Craft</span>
-                            <h4 class="font-serif text-base font-bold mt-1">Moradabad Handcarved Brasswork</h4>
+                <!-- Right Hero Imagery & Floating Glassmorphic Stat Cards (Exact from Design Photo) -->
+                <div class="lg:col-span-6 relative flex flex-col items-end space-y-4">
+                    
+                    <!-- 4 Floating Glassmorphic Stat Cards (From Screenshot media_1789283078419.png) -->
+                    <div class="grid grid-cols-2 gap-3 w-full max-w-md z-20">
+                        <div class="bg-black/30 backdrop-blur-md border border-white/20 rounded-2xl p-3 shadow-elevated flex items-center space-x-3">
+                            <div class="w-9 h-9 rounded-xl bg-amber-500/20 border border-amber-400/40 flex items-center justify-center text-amber-200">
+                                <i class="fas fa-coins text-sm"></i>
+                            </div>
+                            <div>
+                                <span class="font-serif text-base font-bold text-amber-100 block leading-tight">₹ 1.2L+</span>
+                                <span class="text-[9.5px] text-stone-300">Total Sales (30 days)</span>
+                            </div>
+                        </div>
+
+                        <div class="bg-black/30 backdrop-blur-md border border-white/20 rounded-2xl p-3 shadow-elevated flex items-center space-x-3">
+                            <div class="w-9 h-9 rounded-xl bg-amber-500/20 border border-amber-400/40 flex items-center justify-center text-amber-200">
+                                <i class="fas fa-bullseye text-sm"></i>
+                            </div>
+                            <div>
+                                <span class="font-serif text-base font-bold text-amber-100 block leading-tight">532</span>
+                                <span class="text-[9.5px] text-stone-300">Orders This Month</span>
+                            </div>
+                        </div>
+
+                        <div class="bg-black/30 backdrop-blur-md border border-white/20 rounded-2xl p-3 shadow-elevated flex items-center space-x-3">
+                            <div class="w-9 h-9 rounded-xl bg-amber-500/20 border border-amber-400/40 flex items-center justify-center text-amber-200">
+                                <i class="fas fa-wand-magic-sparkles text-sm"></i>
+                            </div>
+                            <div>
+                                <span class="font-serif text-base font-bold text-amber-100 block leading-tight">24/7</span>
+                                <span class="text-[9.5px] text-stone-300">AI Assistance</span>
+                            </div>
+                        </div>
+
+                        <div class="bg-black/30 backdrop-blur-md border border-white/20 rounded-2xl p-3 shadow-elevated flex items-center space-x-3">
+                            <div class="w-9 h-9 rounded-xl bg-amber-500/20 border border-amber-400/40 flex items-center justify-center text-amber-200">
+                                <i class="fas fa-globe text-sm"></i>
+                            </div>
+                            <div>
+                                <span class="font-serif text-base font-bold text-amber-100 block leading-tight">2.8k+</span>
+                                <span class="text-[9.5px] text-stone-300">Marketplace Reach</span>
+                            </div>
                         </div>
                     </div>
+
+                    <!-- Staged Craft Artifacts (Terracotta, Brass, Carved Wood, Silk Brocade) -->
+                    <div class="relative w-full max-w-md rounded-2xl overflow-hidden border border-amber-400/30 shadow-2xl">
+                        <img src="https://images.unsplash.com/photo-1606293926075-69a00dbfde81?w=800&auto=format&fit=crop" 
+                             alt="Traditional Indian Crafts Still Life" class="w-full h-52 object-cover"/>
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
+                        <div class="absolute bottom-3 left-4 right-4 flex justify-between items-end text-white">
+                            <div>
+                                <span class="text-[9px] bg-amber-600/80 px-2 py-0.5 rounded-full font-bold uppercase tracking-wider">Living Heritage</span>
+                                <h4 class="font-serif text-xs sm:text-sm font-bold mt-1">Terracotta &bull; Brassware &bull; Banarasi Silk</h4>
+                            </div>
+                            <span class="text-[10px] text-amber-200 font-semibold cursor-pointer hover:underline" onclick="switchPage('marketplace')">
+                                Explore Clusters &rarr;
+                            </span>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>
+
 
         <!-- 4 Feature Value Proposition Strip (Exact 4 Columns from Guide) -->
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -454,15 +641,22 @@
                 </nav>
 
                 <!-- Bottom Indian Miniature Illustration Card (From Guide) -->
-                <div class="rounded-2xl p-4 text-white relative overflow-hidden shadow-md"
-                     style="background: linear-gradient(145deg, #7A1C1C, #441212);">
-                    <div class="h-28 rounded-xl overflow-hidden mb-2 border border-white/20">
-                        <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=300" class="w-full h-full object-cover"/>
+                <div class="rounded-2xl p-4 text-white relative overflow-hidden shadow-md border border-amber-400/30"
+                     style="background: radial-gradient(circle, #7A1C1C 0%, #441212 100%);">
+                    <div class="absolute -right-4 -bottom-4 w-24 h-24 opacity-20 pointer-events-none">
+                        <svg viewBox="0 0 100 100" fill="none" stroke="#FDE68A" stroke-width="2">
+                            <circle cx="50" cy="50" r="40"/>
+                            <path d="M50 10 L50 90 M10 50 L90 50"/>
+                        </svg>
                     </div>
-                    <p class="text-[11px] font-serif font-bold text-amber-200">
+                    <div class="h-28 rounded-xl overflow-hidden mb-2.5 border border-amber-300/40 shadow-sm relative">
+                        <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=300" class="w-full h-full object-cover"/>
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                    </div>
+                    <p class="text-[11.5px] font-serif font-bold text-amber-200 leading-snug">
                         "Crafting a better tomorrow, together."
                     </p>
-                    <span class="text-[9px] text-stone-300 block mt-1">PM Vishwakarma Artisan Support</span>
+                    <span class="text-[9.5px] text-stone-300 block mt-1">PM Vishwakarma &bull; MoSJE Certified</span>
                 </div>
             </aside>
 
