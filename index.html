@@ -358,7 +358,7 @@
                 
                 <!-- Tools Dropdown -->
                 <div class="relative group">
-                    <button class="nav-link flex items-center gap-1">
+                    <button onclick="switchView('view-add-product')" class="nav-link flex items-center gap-1">
                         <span>AI Studio</span>
                         <i class="fas fa-chevron-down text-[10px] text-stone-400"></i>
                     </button>
@@ -2579,6 +2579,7 @@
 
         // Switch between Full-Screen Views
         function switchView(viewId) {
+            console.log("Switching to view:", viewId);
             const views = document.querySelectorAll('.app-view');
             views.forEach(v => v.classList.remove('active-view'));
 
@@ -2586,9 +2587,24 @@
             if (target) {
                 target.classList.add('active-view');
                 window.scrollTo({ top: 0, behavior: 'smooth' });
-                history.replaceState(null, null, '#' + viewId.replace('view-', ''));
+                try {
+                    history.replaceState(null, null, '#' + viewId.replace('view-', ''));
+                } catch(e) {}
             }
 
+            // Update top bar controller buttons highlight
+            const topBtns = document.querySelectorAll('[id^="btn-view-"]');
+            topBtns.forEach(btn => {
+                btn.classList.remove('bg-amber-400', 'text-stone-900', 'font-bold', 'border-amber-300');
+                btn.classList.add('bg-stone-900', 'text-stone-200', 'border-stone-700');
+            });
+            const activeBtn = document.getElementById('btn-' + viewId);
+            if (activeBtn) {
+                activeBtn.classList.remove('bg-stone-900', 'text-stone-200', 'border-stone-700');
+                activeBtn.classList.add('bg-amber-400', 'text-stone-900', 'font-bold', 'border-amber-300');
+            }
+
+            // Update main navbar links highlight
             const navLinks = document.querySelectorAll('.nav-link');
             navLinks.forEach(l => l.classList.remove('active'));
 
@@ -2635,6 +2651,18 @@
             } catch (e) {
                 document.getElementById('backend-status-badge').innerHTML = 
                     '<span class="w-2 h-2 rounded-full bg-amber-400"></span><span class="text-amber-200 font-bold">Standalone Prototype (Ready)</span>';
+            }
+            console.log("KalaKart Prototype Initialized Successfully!");
+        });
+
+        // Listen for browser back/forward and manual hash changes
+        window.addEventListener('hashchange', () => {
+            const hash = window.location.hash.replace('#', '');
+            if (hash) {
+                const candidateId = 'view-' + hash;
+                if (document.getElementById(candidateId)) {
+                    switchView(candidateId);
+                }
             }
         });
 
@@ -2764,7 +2792,8 @@
             badge.innerText = "Story Captured";
 
             // Infer fields from transcript
-            const text = document.getElementById('voice-transcript-hint').value.toLowerCase();
+            const el = document.getElementById('voice-transcript-hint');
+            const text = el ? String(el.value || '').toLowerCase() : '';
             if (text.includes('dupatta') || text.includes('silk') || text.includes('saree')) {
                 document.getElementById('inp-product-name').value = "Handwoven Banarasi Silk Dupatta";
                 document.getElementById('inp-craft-type').value = "Textiles";
@@ -2901,7 +2930,7 @@
                 <html>
                 <head>
                     <title>KalaKart Mela Standee - ${AppState.currentProduct.title}</title>
-                    <script src="https://cdn.tailwindcss.com"></script>
+                    <script src="https://cdn.tailwindcss.com"><' + '/script>
                     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Playfair+Display:wght@700&family=Plus+Jakarta+Sans:wght@500;700&display=swap" rel="stylesheet">
                     <style>
                         body { font-family: 'Plus Jakarta Sans', sans-serif; background: #FAF6EF; color: #1C1714; }
@@ -3017,9 +3046,17 @@
         }
 
         function copyCounterOffer() {
-            const text = document.getElementById('counter-offer-text').innerText;
-            navigator.clipboard.writeText(text);
-            showToast("📋 Copied to Clipboard", "Bilingual counter-offer message copied. Ready to paste in WhatsApp/SMS!");
+            const el = document.getElementById('counter-offer-text');
+            const text = el ? el.innerText : '';
+            if (navigator && navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(text).then(() => {
+                    showToast("📋 Copied!", "Counter-offer message copied to clipboard. Ready to paste in WhatsApp/SMS!");
+                }).catch(() => {
+                    showToast("📋 Copied!", "Counter-offer text ready to send!");
+                });
+            } else {
+                showToast("📋 Copied!", "Counter-offer text ready to send!");
+            }
         }
 
         // -------------------------------------------------------------
@@ -3171,7 +3208,8 @@
         }
 
         function filterCraftsLive() {
-            const q = document.getElementById('market-search').value.toLowerCase();
+            const el = document.getElementById('market-search');
+            const q = el ? String(el.value || '').toLowerCase() : '';
             const items = document.querySelectorAll('.craft-item');
             items.forEach(item => {
                 const text = item.getAttribute('data-name').toLowerCase();
@@ -3246,14 +3284,14 @@
         }
 
         function openSettingsModal() {
-            alert("⚙️ Artisan Settings & Banking:
+            alert(`⚙️ Artisan Settings & Banking:
 
 • Artisan Name: Priya Sharma
 • PM Vishwakarma ID: VISHWA-RJ-2026-9482
 • Aadhaar-Linked Bank A/c: HDFC Bank ending in 4109
 • UPI ID: priya.sharma@upi
 • Dialect Preference: Hindi (Rajasthan Marwari)
-• GST Status: Exempt under Notification 34/2023 (<₹40L)");
+• GST Status: Exempt under Notification 34/2023 (<₹40L)`);
         }
 
         function shareProfile() {
